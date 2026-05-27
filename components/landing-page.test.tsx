@@ -29,6 +29,11 @@ describe("HomePage", () => {
     render(<HomePage />);
 
     expect(
+      screen.getByText(
+        "청약 공고를 직관적으로 확인하고 간편하게 자격을 검증할 수 있는 웹 서비스입니다.",
+      ),
+    ).toBeInTheDocument();
+    expect(
       screen.getByRole("link", { name: /Web Product Platform 상세 보기/ }),
     ).toHaveAttribute("href", "/projects/web-product-platform");
     expect(
