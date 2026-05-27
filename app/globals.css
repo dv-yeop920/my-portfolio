@@ -1,0 +1,16 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, "Apple SD Gothic Neo", sans-serif;
+  color: #102438;
+  background: #faf9f6;
+}

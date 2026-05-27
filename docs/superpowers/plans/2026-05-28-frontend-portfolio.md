@@ -6,7 +6,7 @@
 
 **Architecture:** A Next.js App Router application renders typed local content from `data/portfolio.ts`. Reusable landing and case-study components consume that content, while `/projects/[slug]` resolves project records and returns a not-found state for unknown slugs. Plain CSS provides the visual system and responsive behavior; Vitest and Testing Library verify content rendering and data lookup behavior.
 
-**Tech Stack:** Latest stable Next.js App Router, React, TypeScript, plain CSS, Turbopack for development, ESLint, Vitest, React Testing Library
+**Tech Stack:** Next.js 16 App Router, React 19, TypeScript 5.9, plain CSS, Turbopack for development, ESLint, Vitest 3, React Testing Library
 
 ---
 
@@ -48,10 +48,10 @@ Run:
 ```bash
 npm init -y
 npm install next@latest react@latest react-dom@latest
-npm install --save-dev typescript @types/node @types/react @types/react-dom eslint eslint-config-next vitest jsdom @testing-library/react @testing-library/dom @testing-library/jest-dom
+npm install --save-dev typescript@5.9.3 @types/node @types/react @types/react-dom eslint eslint-config-next typescript-eslint@8.46.1 vitest@3.2.4 jsdom@26.1.0 @testing-library/react @testing-library/dom @testing-library/jest-dom
 ```
 
-Expected: `package.json` and `package-lock.json` are created; npm reports successful installs. Vitest may install Vite internally as its test runner dependency, but the application itself is built and served by Next.js/Turbopack.
+Expected: `package.json` and `package-lock.json` are created; npm reports successful installs without engine warnings on the local Node `20.13.1` environment. Vitest installs Vite 6 internally as its compatible test runner dependency, but the application itself is built and served by Next.js/Turbopack.
 
 - [ ] **Step 2: Configure scripts and Next.js/TypeScript tooling**
 
@@ -86,12 +86,12 @@ Create `tsconfig.json`:
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "plugins": [{ "name": "next" }],
     "paths": { "@/*": ["./*"] }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", ".next/dev/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
 ```
@@ -113,6 +113,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  turbopack: {
+    root: process.cwd(),
+  },
 };
 
 export default nextConfig;
