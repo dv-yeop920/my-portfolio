@@ -1,5 +1,6 @@
 import { ContactSection } from "@/components/contact-section";
 import { Hero } from "@/components/hero";
+import { ProjectsSection } from "@/components/projects-section";
 import { SectionHeading } from "@/components/section-heading";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -20,6 +21,7 @@ export default function HomePage() {
           <p>{portfolio.profile.introduction}</p>
         </section>
         <SkillsSection />
+        <ProjectsSection />
         <ContactSection />
       </main>
       <SiteFooter name={portfolio.profile.name} />

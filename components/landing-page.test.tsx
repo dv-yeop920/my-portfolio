@@ -24,4 +24,15 @@ describe("HomePage", () => {
       screen.getByRole("heading", { name: "Skills" }),
     ).toBeInTheDocument();
   });
+
+  it("links each featured project to its case study", () => {
+    render(<HomePage />);
+
+    expect(
+      screen.getByRole("link", { name: /Web Product Platform 상세 보기/ }),
+    ).toHaveAttribute("href", "/projects/web-product-platform");
+    expect(
+      screen.getByRole("link", { name: /AI Study Planner 상세 보기/ }),
+    ).toHaveAttribute("href", "/projects/ai-study-planner");
+  });
 });

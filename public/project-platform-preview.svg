@@ -1,0 +1,11 @@
+<svg width="720" height="440" viewBox="0 0 720 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="440" rx="26" fill="#EAF1F7"/>
+  <rect x="42" y="42" width="636" height="356" rx="16" fill="white"/>
+  <rect x="70" y="72" width="146" height="16" rx="8" fill="#142C43"/>
+  <rect x="70" y="125" width="286" height="94" rx="12" fill="#DBE9F5"/>
+  <rect x="378" y="125" width="270" height="43" rx="12" fill="#EFF4F8"/>
+  <rect x="378" y="181" width="214" height="16" rx="8" fill="#C8D8E5"/>
+  <rect x="70" y="249" width="578" height="112" rx="12" fill="#142C43"/>
+  <path d="M104 320L149 282L191 306L237 271L285 305" stroke="#4C8DFF" stroke-width="6" stroke-linecap="round"/>
+  <text x="378" y="315" fill="white" font-family="Arial" font-size="20">Performance Delivery</text>
+</svg>
