@@ -43,8 +43,8 @@ The home page is a single, scannable introduction with anchored sections:
 1. **Header**: name/wordmark, navigation to About, Skills, Projects, and
    Contact, plus a compact mobile navigation treatment.
 2. **Hero**: `이준엽 | Frontend Developer`, a performance-centered value
-   statement, email and GitHub calls to action, and a compact panel featuring
-   `Performance`, `Architecture`, and `UX`.
+   statement, email and GitHub calls to action, and a profile image area that
+   can be replaced with an approved portrait asset.
 3. **About**: a short narrative describing an interest in finding frontend
    bottlenecks, improving user experience, and delivering complete product
    screens.
@@ -221,4 +221,3 @@ Implementation is acceptable when:
 - Blog, authentication, admin editing, or analytics dashboard
 - Fabricated performance metrics, fabricated deployed links, or publication of
   unreviewed company screenshots
-

@@ -1,7 +1,9 @@
+import Image from "next/image";
+
 import { portfolio } from "@/data/portfolio";
 
 export function Hero() {
-  const { profile, strengths } = portfolio;
+  const { profile } = portfolio;
 
   return (
     <section className="hero container" aria-labelledby="hero-title">
@@ -25,13 +27,14 @@ export function Hero() {
           </a>
         </div>
       </div>
-      <div className="strength-panel" aria-label="주요 강점">
-        {strengths.map((strength, index) => (
-          <div className="strength" key={strength}>
-            <span>0{index + 1}</span>
-            <strong>{strength}</strong>
-          </div>
-        ))}
+      <div className="profile-visual">
+        <Image
+          src={profile.image}
+          alt={profile.imageAlt}
+          width={420}
+          height={520}
+          priority
+        />
       </div>
     </section>
   );

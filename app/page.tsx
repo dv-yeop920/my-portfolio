@@ -17,8 +17,8 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="About Me"
             title="문제를 발견하고, 더 빠른 경험으로 개선합니다."
+            description={portfolio.profile.introduction}
           />
-          <p>{portfolio.profile.introduction}</p>
         </section>
         <SkillsSection />
         <ProjectsSection />

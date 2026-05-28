@@ -110,7 +110,7 @@ nav a:focus-visible,
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
   align-items: center;
   gap: 58px;
   min-height: calc(100vh - 72px);
@@ -172,33 +172,18 @@ nav a:focus-visible,
   transform: translateY(-2px);
 }
 
-.strength-panel {
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
-  box-shadow: var(--shadow);
-}
-
-.strength {
+.profile-visual {
   display: flex;
-  align-items: center;
-  gap: 26px;
-  padding: 28px;
-  border-bottom: 1px solid var(--line);
+  justify-content: flex-end;
 }
 
-.strength:last-child {
-  border: 0;
-}
-
-.strength span {
-  color: var(--accent);
-  font-size: 0.82rem;
-}
-
-.strength strong {
-  font-size: 1.12rem;
+.profile-visual img {
+  width: min(100%, 360px);
+  height: auto;
+  aspect-ratio: 420 / 520;
+  object-fit: cover;
+  border-radius: calc(var(--radius) + 10px);
+  box-shadow: var(--shadow);
 }
 
 .section {
@@ -211,25 +196,17 @@ nav a:focus-visible,
 }
 
 .section-heading > p:last-child,
-.about > p,
 .contact-inner > p:not(.eyebrow) {
   color: var(--ink-soft);
 }
 
 .about {
-  display: grid;
-  grid-template-columns: 1fr 0.9fr;
-  gap: 56px;
   border-top: 1px solid var(--line);
 }
 
 .about .section-heading {
+  max-width: 760px;
   margin-bottom: 0;
-}
-
-.about > p {
-  padding-top: 44px;
-  font-size: 1.08rem;
 }
 
 .skill-grid,
@@ -457,17 +434,20 @@ a:focus-visible {
     padding: 70px 0 60px;
   }
 
-  .about,
+  .profile-visual {
+    justify-content: center;
+  }
+
+  .profile-visual img {
+    width: min(100%, 320px);
+  }
+
   .skill-grid,
   .project-grid,
   .case-grid,
   .story-grid,
   .highlight-grid {
     grid-template-columns: 1fr;
-  }
-
-  .about > p {
-    padding-top: 0;
   }
 
   .section,

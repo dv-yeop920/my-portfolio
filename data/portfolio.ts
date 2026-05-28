@@ -34,11 +34,12 @@ export const portfolio = {
     role: "Frontend Developer",
     email: "jyeop920@gmail.com",
     github: "https://github.com/dv-yeop920",
+    image: "/profile-placeholder.svg",
+    imageAlt: "이준엽 프로필 사진",
     headline: "사용자가 느끼는 속도와 경험을 개선하는 프론트엔드 개발자",
     introduction:
       "화면을 구현하는 데서 멈추지 않고, 사용 흐름에서 발생하는 병목을 발견하고 해결하는 프론트엔드 개발을 지향합니다.",
   },
-  strengths: ["Performance", "Architecture", "UX"],
   skillGroups: [
     {
       title: "Core Frontend",

@@ -23,6 +23,10 @@ describe("HomePage", () => {
     expect(
       screen.getByRole("heading", { name: "Skills" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "이준엽 프로필 사진" }),
+    ).toBeInTheDocument();
+    expect(screen.queryByText("Performance")).not.toBeInTheDocument();
   });
 
   it("links each featured project to its case study", () => {
