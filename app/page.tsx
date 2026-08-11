@@ -22,7 +22,7 @@ export default function HomePage() {
           <section id="about" className="section about container">
             <SectionHeading
               eyebrow="About Me"
-              title={`사용자의 불편에서 시작해\n제품의 완성도를 높입니다.`}
+              title={`문제를 정확히 정의하고 \n 사용자에게 필요한 방식으로 풀어가는 과정을 \n중요하게 생각합니다.`}
             />
             <ul className="about-list">
               {portfolio.profile.aboutHighlights.map((highlight, index) => (

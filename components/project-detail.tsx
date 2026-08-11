@@ -63,6 +63,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                         width={1170}
                         height={2532}
                         sizes="(max-width: 820px) 75vw, 22vw"
+                        unoptimized={image.unoptimized}
                       />
                     </figure>
                   ))

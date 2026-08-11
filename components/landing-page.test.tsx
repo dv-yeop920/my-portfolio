@@ -8,7 +8,7 @@ describe("HomePage", () => {
 
     expect(
       screen.getByRole("heading", {
-        name: /사용자의 행동과 경험을 더 나은 방향으로 변화시키는/,
+        name: /사용자의 경험을 더 나은 방향으로 변화시키는/,
       }),
     ).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute(
@@ -46,7 +46,7 @@ describe("HomePage", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/누적 방문자 1,000명/)).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "현장의 문제 해결" }),
+      screen.getByRole("heading", { name: "실제 문제를 서비스로 해결" }),
     ).toBeInTheDocument();
     expect(screen.getByText("TanStack Query")).toBeInTheDocument();
     expect(screen.getByText("vanilla-extract")).toBeInTheDocument();

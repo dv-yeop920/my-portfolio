@@ -22,6 +22,9 @@ describe("ProjectDetail", () => {
     expect(
       screen.getByRole("heading", { name: "사용자 경험을 설계한 흐름" }),
     ).toBeInTheDocument();
+    expect(screen.getByText(/S3에 저장하고 CloudFront CDN으로 제공/)).toBeInTheDocument();
+    expect(screen.getByText(/next\/image의 lazy loading/)).toBeInTheDocument();
+    expect(screen.getByText(/metadata와 semantic HTML/)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "자격 분석 결과" }),
     ).toBeInTheDocument();
@@ -29,7 +32,7 @@ describe("ProjectDetail", () => {
       screen.queryByRole("heading", { name: "화면 미리보기" }),
     ).not.toBeInTheDocument();
     expect(screen.queryByText("Flow 01")).not.toBeInTheDocument();
-    expect(screen.getAllByRole("img")).toHaveLength(16);
+    expect(screen.getAllByRole("img")).toHaveLength(18);
     expect(
       screen.queryByRole("heading", { name: "자격 검증 화면" }),
     ).not.toBeInTheDocument();

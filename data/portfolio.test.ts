@@ -20,7 +20,7 @@ describe("portfolio project content", () => {
     expect(planner?.links).toEqual([]);
     expect(platform?.screens).toHaveLength(3);
     expect(platform?.flow).toHaveLength(8);
-    expect(platform?.flow.flatMap((step) => step.images ?? [])).toHaveLength(16);
+    expect(platform?.flow.flatMap((step) => step.images ?? [])).toHaveLength(18);
     expect(planner?.title).toBe("런잇");
     expect(planner?.flow).toHaveLength(4);
     expect(scheduleManager?.links).toEqual([]);

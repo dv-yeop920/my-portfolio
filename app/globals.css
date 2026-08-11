@@ -588,7 +588,9 @@ h3 {
 .project-flow-image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: contain;
+  object-position: top;
 }
 
 .project-flow-copy {
