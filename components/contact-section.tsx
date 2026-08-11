@@ -4,27 +4,27 @@ export function ContactSection() {
   const { profile } = portfolio;
 
   return (
-    <section id="contact" className="contact">
-      <div className="container contact-inner">
-        <p className="eyebrow">Contact</p>
-        <h2>좋은 사용자 경험을 만드는 팀과 함께하고 싶습니다.</h2>
+    <section id="contact" className="section contact container" data-reveal>
+      <h2>Contact</h2>
+      <div className="contact-details">
         <p>
-          프로젝트와 프론트엔드 개발 경험에 대한 이야기를 나누고 싶다면
-          연락해 주세요.
+          <strong>Phone : </strong>
+          {profile.phone}
         </p>
-        <div className="actions">
-          <a className="button primary" href={`mailto:${profile.email}`}>
-            이메일: {profile.email}
-          </a>
+        <p>
+          <strong>Email : </strong>
+          <a href={`mailto:${profile.email}`}>{profile.email}</a>
+        </p>
+        <p>
+          <strong>Github : </strong>
           <a
-            className="button secondary"
             href={profile.github}
             target="_blank"
             rel="noreferrer"
           >
-            GitHub Profile
+            {profile.github}
           </a>
-        </div>
+        </p>
       </div>
     </section>
   );

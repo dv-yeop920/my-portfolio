@@ -4,29 +4,73 @@ import { getProjectBySlug } from "@/data/portfolio";
 import { ProjectDetail } from "./project-detail";
 
 describe("ProjectDetail", () => {
-  it("shows the verified optimization story without an invented metric", () => {
+  it("shows the Saejipsa user flow story", () => {
     const project = getProjectBySlug("web-product-platform");
     if (!project) throw new Error("Fixture project is required");
 
     render(<ProjectDetail project={project} />);
 
     expect(
-      screen.getByRole("heading", { name: "Web Product Platform" }),
+      screen.getByRole("heading", { name: "새집사" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/AWS S3와 CloudFront/)).toBeInTheDocument();
     expect(
-      screen.getByText(/측정 수치는 보존되어 있지 않지만/),
+      screen.getByText(/관심 지역 선택부터 공고 탐색, 상세 정보 확인/),
     ).toBeInTheDocument();
+    expect(
+      screen.getByText(/약 2주 동안 누적 방문자 1,000명을 기록/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "사용자 경험을 설계한 흐름" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "자격 분석 결과" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "화면 미리보기" }),
+    ).not.toBeInTheDocument();
+    expect(screen.queryByText("Flow 01")).not.toBeInTheDocument();
+    expect(screen.getAllByRole("img")).toHaveLength(16);
+    expect(
+      screen.queryByRole("heading", { name: "자격 검증 화면" }),
+    ).not.toBeInTheDocument();
     expect(screen.queryByText(/70점/)).not.toBeInTheDocument();
   });
 
-  it("labels the study planner as in progress", () => {
+  it("shows the RunIt learning flow", () => {
     const project = getProjectBySlug("ai-study-planner");
     if (!project) throw new Error("Fixture project is required");
 
     render(<ProjectDetail project={project} />);
 
-    expect(screen.getByText("개발 중")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "런잇" }),
+    ).toBeInTheDocument();
     expect(screen.getByText(/API 연동 진행/)).toBeInTheDocument();
+    expect(
+      screen.getByText(/전체 과정을 목표 설정 → 날짜별 계획 생성/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "AI 요약과 확인 퀴즈" }),
+    ).toBeInTheDocument();
+  });
+
+  it("shows the Laviebel scheduling and payroll automation story", () => {
+    const project = getProjectBySlug("laviebel-schedule-manager");
+    if (!project) throw new Error("Fixture project is required");
+
+    render(<ProjectDetail project={project} />);
+
+    expect(
+      screen.getByRole("heading", { name: "라비에벨 스케줄 관리" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByText("주간 스케줄 작성 시간 평균 2시간 → 30분 단축"),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.getByText(/Supabase에서 가입 코드의 사용 횟수와 활성 상태를 관리/),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "급여 내역 확인" }),
+    ).toBeInTheDocument();
   });
 });

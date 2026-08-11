@@ -7,11 +7,15 @@ export function SkillsSection() {
       <SectionHeading
         eyebrow="Capabilities"
         title="Skills"
-        description="실제 구현과 문제 해결에 활용한 기술을 중심으로 정리했습니다."
       />
       <div className="skill-grid">
-        {portfolio.skillGroups.map((group) => (
-          <article className="skill-card" key={group.title}>
+        {portfolio.skillGroups.map((group, index) => (
+          <article
+            className="skill-card"
+            key={group.title}
+            data-reveal
+            data-reveal-delay={(index % 3) + 1}
+          >
             <h3>{group.title}</h3>
             <div className="tags">
               {group.skills.map((skill) => (

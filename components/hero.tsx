@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 import { portfolio } from "@/data/portfolio";
 
 export function Hero() {
@@ -7,10 +5,8 @@ export function Hero() {
 
   return (
     <section className="hero container" aria-labelledby="hero-title">
-      <div className="hero-copy">
-        <p className="eyebrow">
-          {profile.name} | {profile.role}
-        </p>
+      <div className="hero-copy" data-reveal>
+        <p className="eyebrow">{profile.role}</p>
         <h1 id="hero-title">{profile.headline}</h1>
         <p className="hero-description">{profile.introduction}</p>
         <div className="actions">
@@ -26,15 +22,6 @@ export function Hero() {
             GitHub
           </a>
         </div>
-      </div>
-      <div className="profile-visual">
-        <Image
-          src={profile.image}
-          alt={profile.imageAlt}
-          width={420}
-          height={520}
-          priority
-        />
       </div>
     </section>
   );

@@ -5,7 +5,7 @@
 Build a job-search portfolio site for Lee Junyeop (`이준엽`), a frontend
 developer whose strongest positioning is improving user experience through
 performance-aware problem solving. The site should let a recruiter understand
-the candidate quickly on the landing page, then inspect two projects as case
+the candidate quickly on the landing page, then inspect three projects as case
 studies with enough technical detail to support an interview conversation.
 
 ## Confirmed Technology Direction
@@ -50,7 +50,7 @@ The home page is a single, scannable introduction with anchored sections:
    screens.
 4. **Skills**: grouped competency display for core frontend, architecture/API,
    and delivery/performance technologies.
-5. **Featured Projects**: two prominent cards, each including a visual area,
+5. **Featured Projects**: three prominent cards, each including a visual area,
    public working title, summary, role highlights, technology tags, and a link
    to its detailed case study.
 6. **Contact**: a concise closing invitation with email and GitHub links.
@@ -79,10 +79,10 @@ Each case study includes:
 
 ## Initial Project Content
 
-Project names and company attribution are intentionally working labels until
-Lee Junyeop provides publicly usable names.
+Project names and descriptions use the publicly available information supplied
+in Lee Junyeop's resume.
 
-### Project 1: Web Product Platform
+### Project 1: 새집사
 
 This is a prior company project for which screenshots remain available.
 
@@ -95,13 +95,15 @@ This is a prior company project for which screenshots remain available.
   performance during development; the implementation used AWS S3 and
   CloudFront for image delivery, SVG/WebP assets where appropriate, and lazy
   loading to improve page loading behavior and transferred image weight.
-- Evidence rule: no Lighthouse score, improvement percentage, or measured load
-  time is displayed because those measurements are no longer available.
+- Evidence: Chrome DevTools Network measurements recorded in the resume show
+  an approximate 30% reduction in average initial image request loading time.
+- Operations: PM2 cluster mode, automatic restart, and log tracking support
+  service availability and incident analysis.
 - Asset rule: screenshots are reviewed before publication and redacted if they
   expose personal data, credentials, confidential business information, or
   assets that cannot be published.
 
-### Project 2: AI Study Planner
+### Project 2: 뉴브랜치
 
 This is an in-progress learning-support service for students.
 
@@ -109,13 +111,32 @@ This is an in-progress learning-support service for students.
   achievement goals, and use AI-assisted note summarization to support
   studying.
 - Role: established a folder structure informed by Feature-Sliced Design and
-  completed page publishing/UI implementation.
+  completed page publishing/UI implementation. Also established shared AI
+  Agent rules with AGENTS.md, Skill, and Hook configuration.
+- UX flow: goal setting, date-based plan generation, today's study, learning
+  verification, confirmation quiz, and completion.
 - Intended feature case-study focus: personal learning, learning goal
   achievement, and consolidated-note (`단권화`) domain features and their API
   integration.
 - Publication rule: the site must display the project and each feature using
   its truthful implementation and deployment status at release time. Planned
   API work must not be presented as completed until verified.
+
+### Project 3: 라비에벨 스케줄 관리
+
+This is an in-progress personal service developed from an actual wedding-hall
+work scheduling and payroll-management problem.
+
+- Role: product planning, frontend and backend development, and operation.
+- Product purpose: consolidate a KakaoTalk and memo-based coordination process
+  into a notice, application, assignment, confirmation, and payroll workflow.
+- Confirmed outcome: weekly schedule creation time decreased from an average
+  of two hours to 30 minutes.
+- Payroll: confirmed work hours, employee wage, and additional allowances are
+  used to automatically calculate weekly and monthly payroll totals.
+- Access control: Supabase invitation codes track allowed use counts and active
+  status. Administrators can issue or renew codes after exhaustion to limit
+  code reuse and unauthorized sign-up.
 
 ## Skills Content
 
@@ -168,7 +189,7 @@ format while establishing a distinct, more modern visual identity:
 ## Content Model And Component Boundaries
 
 Portfolio content lives in a typed module such as `data/portfolio.ts`. It
-contains profile/contact fields, skills groups, and two project case-study
+contains profile/contact fields, skills groups, and three project case-study
 records keyed by slug. This permits project names, links, statuses, or images
 to be updated without restructuring page components.
 
@@ -203,7 +224,7 @@ project data is not duplicated in individual UI blocks.
 Implementation is acceptable when:
 
 - The home page displays the approved sections and contact links.
-- Two project cards navigate to separate detailed case-study pages.
+- Three project cards navigate to separate detailed case-study pages.
 - Project 1 describes verified optimization actions without unsupported
   numerical claims.
 - Project 2 can accurately reflect development/deployment status through the
