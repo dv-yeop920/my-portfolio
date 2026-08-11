@@ -63,6 +63,16 @@ describe("HomePage", () => {
     render(<HomePage />);
 
     expect(
+      screen
+        .getAllByRole("link", { name: /상세 페이지$/ })
+        .map((link) => link.getAttribute("aria-label")),
+    ).toEqual([
+      "새집사 상세 페이지",
+      "라비에벨 스케줄 관리 상세 페이지",
+      "런잇 상세 페이지",
+    ]);
+
+    expect(
       screen.getByText(
         "복잡한 청약 공고를 직관적으로 탐색하고 자격 조건을 쉽게 검증할 수 있도록 만든 웹 서비스입니다.",
       ),

@@ -432,6 +432,10 @@ h3 {
   color: var(--ink-soft);
 }
 
+.project-eyebrow {
+  white-space: pre-line;
+}
+
 .project-card p {
   color: var(--ink-soft);
 }

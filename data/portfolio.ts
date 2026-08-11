@@ -105,7 +105,7 @@ export const portfolio = {
     {
       slug: "web-product-platform",
       title: "새집사",
-      eyebrow: "Freelance · 2024.06 - 2025.02",
+      eyebrow: "Freelance\n2024.06 - 2025.02",
       summary:
         "복잡한 청약 공고를 직관적으로 탐색하고 자격 조건을 쉽게 검증할 수 있도록 만든 웹 서비스입니다.",
       purpose:

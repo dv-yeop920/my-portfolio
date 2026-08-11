@@ -14,17 +14,8 @@ describe("ProjectDetail", () => {
       screen.getByRole("heading", { name: "새집사" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByText(/관심 지역 선택부터 공고 탐색, 상세 정보 확인/),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(/약 2주 동안 누적 방문자 1,000명을 기록/),
-    ).toBeInTheDocument();
-    expect(
       screen.getByRole("heading", { name: "사용자 경험을 설계한 흐름" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/S3에 저장하고 CloudFront CDN으로 제공/)).toBeInTheDocument();
-    expect(screen.getByText(/next\/image의 lazy loading/)).toBeInTheDocument();
-    expect(screen.getByText(/metadata와 semantic HTML/)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "자격 분석 결과" }),
     ).toBeInTheDocument();

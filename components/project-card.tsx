@@ -18,7 +18,7 @@ export function ProjectCard({
     >
       <div className="project-card-body">
         <div className="project-meta">
-          <span>{project.eyebrow}</span>
+          <span className="project-eyebrow">{project.eyebrow}</span>
           {project.slug === "ai-study-planner" ? <span>진행 중</span> : null}
         </div>
         <h3>{project.title}</h3>
