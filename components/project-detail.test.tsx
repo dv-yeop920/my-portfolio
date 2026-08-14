@@ -61,10 +61,13 @@ describe("ProjectDetail", () => {
       screen.queryByText("주간 스케줄 작성 시간 평균 2시간 → 30분 단축"),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByText(/Supabase에서 가입 코드의 사용 횟수와 활성 상태를 관리/),
+      screen.getByRole("heading", { name: "Supabase 기반 데이터 흐름 설계" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "급여 내역 확인" }),
+      screen.getByRole("heading", { name: "급여 관리 · 관리자 + 근무자" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "라비에벨 근무자의 급여 조회 화면" }),
     ).toBeInTheDocument();
   });
 });

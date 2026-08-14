@@ -3,11 +3,21 @@ import Link from "next/link";
 import type { Project } from "@/data/portfolio";
 import { ProjectGallery } from "./project-gallery";
 
+function StoryContent({ content }: { content: string }) {
+  return content.split("\n\n").map((paragraph, paragraphIndex) => (
+    <p key={`${paragraphIndex}-${paragraph.slice(0, 20)}`}>
+      {paragraph.split("**").map((text, index) =>
+        index % 2 === 1 ? <strong key={`${index}-${text}`}>{text}</strong> : text,
+      )}
+    </p>
+  ));
+}
+
 export function ProjectDetail({ project }: { project: Project }) {
   const hasFlowImages = project.flow.some((step) => step.images?.length);
 
   return (
-    <main className="case-study">
+    <main className={`case-study case-study--${project.slug}`}>
       <section className="case-hero container" data-reveal>
         <Link href="/#projects" className="back-link">
           &larr; Projects
@@ -17,6 +27,16 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
         <h1>{project.title}</h1>
         <p className="case-summary">{project.summary}</p>
+        <dl className="project-facts" aria-label="프로젝트 참여 정보">
+          <div>
+            <dt>프로젝트 형태</dt>
+            <dd>{project.team}</dd>
+          </div>
+          <div>
+            <dt>담당 영역</dt>
+            <dd>{project.contribution}</dd>
+          </div>
+        </dl>
         <div className="tags">
           {project.stack.map((technology) => (
             <span key={technology}>{technology}</span>
@@ -132,15 +152,15 @@ export function ProjectDetail({ project }: { project: Project }) {
         <div className="story-grid">
           <article data-reveal data-reveal-delay="1">
             <h3>Challenge</h3>
-            <p>{project.challenge}</p>
+            <StoryContent content={project.challenge} />
           </article>
           <article data-reveal data-reveal-delay="2">
             <h3>Decision</h3>
-            <p>{project.solution}</p>
+            <StoryContent content={project.solution} />
           </article>
           <article data-reveal data-reveal-delay="3">
             <h3>Outcome</h3>
-            <p>{project.outcome}</p>
+            <StoryContent content={project.outcome} />
           </article>
         </div>
       </section>
@@ -158,7 +178,7 @@ export function ProjectDetail({ project }: { project: Project }) {
               data-reveal-delay={(index % 3) + 1}
             >
               <h3>{highlight.title}</h3>
-              <p>{highlight.description}</p>
+              <StoryContent content={highlight.description} />
             </article>
           ))}
         </div>
@@ -167,7 +187,7 @@ export function ProjectDetail({ project }: { project: Project }) {
       <section className="retrospective container" data-reveal>
         <p className="eyebrow">Retrospective</p>
         <h2>배운 점</h2>
-        <p>{project.retrospective}</p>
+        <StoryContent content={project.retrospective} />
         <Link href="/#projects" className="text-link">
           다른 프로젝트 보기
         </Link>

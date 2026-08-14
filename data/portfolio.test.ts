@@ -24,7 +24,7 @@ describe("portfolio project content", () => {
     expect(planner?.title).toBe("런잇");
     expect(planner?.flow).toHaveLength(4);
     expect(scheduleManager?.links).toEqual([]);
-    expect(scheduleManager?.flow).toHaveLength(4);
+    expect(scheduleManager?.flow).toHaveLength(8);
   });
 
   it("returns undefined for a project slug that does not exist", () => {

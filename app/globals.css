@@ -39,6 +39,23 @@ a {
   text-decoration: none;
 }
 
+.skip-link {
+  position: fixed;
+  z-index: 20;
+  top: 12px;
+  left: 12px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  color: #fff;
+  background: var(--ink);
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -492,8 +509,90 @@ h3 {
   font-size: 0.9rem;
 }
 
+.project-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(15, 23, 42, 0.52);
+  backdrop-filter: blur(5px);
+  animation: modal-backdrop-in 180ms ease-out;
+}
+
+.project-modal {
+  position: relative;
+  width: 88vw;
+  height: 90vh;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.3);
+  animation: modal-panel-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-modal-content {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.project-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 1;
+  display: grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+  font-size: 1.8rem;
+  line-height: 1;
+  transition: transform 180ms ease, background 180ms ease;
+}
+
+.project-modal-close:hover,
+.project-modal-close:focus-visible {
+  transform: scale(1.06);
+  background: var(--surface-muted);
+}
+
+@keyframes modal-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 .case-hero {
   padding: 64px 0 48px;
+}
+
+.case-hero h1 {
+  max-width: 700px;
+  font-size: var(--section-title-size);
+  line-height: 1.5;
+  letter-spacing: -0.055em;
 }
 
 .back-link {
@@ -509,6 +608,34 @@ h3 {
   font-size: 1.08rem;
 }
 
+.project-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-width: 720px;
+  margin: 0 0 20px;
+}
+
+.project-facts div {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+
+.project-facts dt {
+  margin-bottom: 4px;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.project-facts dd {
+  margin: 0;
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
 .case-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -522,6 +649,10 @@ h3 {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
+}
+
+.story-grid article p + p {
+  margin-top: 18px;
 }
 
 .case-grid ul {
@@ -595,6 +726,28 @@ h3 {
   height: 100%;
   object-fit: contain;
   object-position: top;
+}
+
+/* La Vie Bel uses desktop captures, so keep their natural proportions. */
+.case-study--laviebel-schedule-manager .project-flow li {
+  grid-template-columns: minmax(320px, 480px) minmax(0, 1fr);
+}
+
+.case-study--laviebel-schedule-manager .project-flow-media {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.case-study--laviebel-schedule-manager .project-flow-media.is-single {
+  grid-template-columns: minmax(0, 260px);
+}
+
+.case-study--laviebel-schedule-manager .project-flow-image {
+  aspect-ratio: auto;
+}
+
+.case-study--laviebel-schedule-manager .project-flow-image img {
+  height: auto;
+  object-fit: initial;
 }
 
 .project-flow-copy {
@@ -856,6 +1009,17 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
     width: min(100% - 32px, 600px);
   }
 
+  .project-modal-backdrop {
+    padding: 0;
+  }
+
+  .project-modal {
+    width: 100vw;
+    height: 100dvh;
+    border: 0;
+    border-radius: 0;
+  }
+
   .hero {
     min-height: 0;
     padding: 70px 0 60px;
@@ -874,6 +1038,10 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
   }
 
   .project-flow li {
+    grid-template-columns: 1fr;
+  }
+
+  .case-study--laviebel-schedule-manager .project-flow li {
     grid-template-columns: 1fr;
   }
 
@@ -906,6 +1074,10 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
 
   .case-hero {
     padding-top: 44px;
+  }
+
+  .project-facts {
+    grid-template-columns: 1fr;
   }
 
   .back-link {
