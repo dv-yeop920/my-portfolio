@@ -23,7 +23,10 @@ describe("ProjectDetail", () => {
       screen.queryByRole("heading", { name: "화면 미리보기" }),
     ).not.toBeInTheDocument();
     expect(screen.queryByText("Flow 01")).not.toBeInTheDocument();
-    expect(screen.getAllByRole("img")).toHaveLength(18);
+    expect(screen.getAllByRole("img")).toHaveLength(19);
+    expect(
+      screen.getByRole("img", { name: "새집사 서비스 아키텍처" }),
+    ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "자격 검증 화면" }),
     ).not.toBeInTheDocument();
@@ -68,6 +71,9 @@ describe("ProjectDetail", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "라비에벨 근무자의 급여 조회 화면" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "라비에벨 스케줄 관리 서비스 아키텍처" }),
     ).toBeInTheDocument();
   });
 });

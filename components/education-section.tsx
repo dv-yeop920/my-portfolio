@@ -5,10 +5,6 @@ export function EducationSection() {
     <section id="education" className="section education container">
       <SectionHeading eyebrow="Background" title="Education" />
       <article className="education-entry" data-reveal data-reveal-delay="1">
-        <h3>코드스테이츠 소프트웨어 엔지니어링 부트캠프 (프론트엔드)</h3>
-        <p>2022.10.20 ~ 2023.04.10</p>
-      </article>
-      <article className="education-entry" data-reveal data-reveal-delay="2">
         <h3>멋쟁이 사자처럼 프론트엔드 스쿨 플러스 (우수상)</h3>
         <p>23.10 ~ 23.12 (2개월)</p>
       </article>

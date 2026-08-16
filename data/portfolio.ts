@@ -38,6 +38,7 @@ export type Project = {
   team: string;
   contribution: string;
   role: string[];
+  architecture?: { src: string; alt: string; width: number; height: number };
   stack: string[];
   challenge: string;
   solution: string;
@@ -121,6 +122,12 @@ export const portfolio = {
         "PM2 클러스터 모드, 자동 재시작, 로그 추적을 구성해 운영 환경 구축",
         "공고 탐색 => 자격 검증 => 검증 결과 확인 흐름 설계 및 아키텍처 설계",
       ],
+      architecture: {
+        src: "/projects/newzipsa/newzipsa-architecture.png",
+        alt: "새집사 서비스 아키텍처",
+        width: 1448,
+        height: 1086,
+      },
       stack: [
         "Next.js(App Router)",
         "TypeScript",
@@ -425,6 +432,12 @@ export const portfolio = {
         "확정 근무시간·시급·추가 수당을 반영한 주간·월간 급여 자동 계산 로직 구현",
         "Supabase 기반 전용 가입 코드의 발급·사용 횟수·활성 상태 관리 구조 설계 및 구현",
       ],
+      architecture: {
+        src: "/projects/laviebel/lavi-architecture-v2.png",
+        alt: "라비에벨 스케줄 관리 서비스 아키텍처",
+        width: 1672,
+        height: 941,
+      },
       stack: [
         "Next.js(App Router)",
         "TypeScript",

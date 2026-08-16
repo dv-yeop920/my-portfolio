@@ -59,6 +59,21 @@ export function ProjectDetail({ project }: { project: Project }) {
             ))}
           </ul>
         </article>
+        {project.architecture ? (
+          <figure className="project-architecture" data-reveal data-reveal-delay="2">
+            <figcaption>
+              <p className="eyebrow">Architecture</p>
+              <h2>서비스 아키텍처</h2>
+            </figcaption>
+            <Image
+              src={project.architecture.src}
+              alt={project.architecture.alt}
+              width={project.architecture.width}
+              height={project.architecture.height}
+              sizes="(max-width: 820px) 100vw, 80vw"
+            />
+          </figure>
+        ) : null}
       </section>
 
       <section className="section project-flow-section container">

@@ -39,8 +39,8 @@ describe("HomePage", () => {
       screen.getByText("멋쟁이 사자처럼 프론트엔드 스쿨 플러스 (우수상)"),
     ).toBeInTheDocument();
     expect(
-      screen.getByText("코드스테이츠 소프트웨어 엔지니어링 부트캠프 (프론트엔드)"),
-    ).toBeInTheDocument();
+      screen.queryByText("코드스테이츠 소프트웨어 엔지니어링 부트캠프 (프론트엔드)"),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "서비스 출시 경험" }),
     ).toBeInTheDocument();
