@@ -3,18 +3,24 @@ import Link from "next/link";
 import type { Project } from "@/data/portfolio";
 import { ProjectGallery } from "./project-gallery";
 
+function BoldText({ content }: { content: string }) {
+  return content
+    .split("**")
+    .map((text, index) =>
+      index % 2 === 1 ? <strong key={`${index}-${text}`}>{text}</strong> : text,
+    );
+}
+
 function StoryContent({ content }: { content: string }) {
   return content.split("\n\n").map((paragraph, paragraphIndex) => (
     <p key={`${paragraphIndex}-${paragraph.slice(0, 20)}`}>
-      {paragraph.split("**").map((text, index) =>
-        index % 2 === 1 ? <strong key={`${index}-${text}`}>{text}</strong> : text,
-      )}
+      <BoldText content={paragraph} />
     </p>
   ));
 }
 
 export function ProjectDetail({ project }: { project: Project }) {
-  const hasFlowImages = project.flow.some((step) => step.images?.length);
+  const hasFlowImages = project.flow.some(step => step.images?.length);
 
   return (
     <main className={`case-study case-study--${project.slug}`}>
@@ -38,7 +44,7 @@ export function ProjectDetail({ project }: { project: Project }) {
           </div>
         </dl>
         <div className="tags">
-          {project.stack.map((technology) => (
+          {project.stack.map(technology => (
             <span key={technology}>{technology}</span>
           ))}
         </div>
@@ -48,19 +54,27 @@ export function ProjectDetail({ project }: { project: Project }) {
         <article data-reveal>
           <p className="eyebrow">Overview</p>
           <h2>프로젝트 개요</h2>
-          <p>{project.purpose}</p>
+          <p>
+            <BoldText content={project.purpose} />
+          </p>
         </article>
         <article data-reveal data-reveal-delay="1">
           <p className="eyebrow">My Role</p>
           <h2>담당 역할</h2>
           <ul>
-            {project.role.map((role) => (
-              <li key={role}>{role}</li>
+            {project.role.map(role => (
+              <li key={role}>
+                <BoldText content={role} />
+              </li>
             ))}
           </ul>
         </article>
         {project.architecture ? (
-          <figure className="project-architecture" data-reveal data-reveal-delay="2">
+          <figure
+            className="project-architecture"
+            data-reveal
+            data-reveal-delay="2"
+          >
             <figcaption>
               <p className="eyebrow">Architecture</p>
               <h2>서비스 아키텍처</h2>
@@ -74,23 +88,63 @@ export function ProjectDetail({ project }: { project: Project }) {
             />
           </figure>
         ) : null}
+        {project.structure ? (
+          <section
+            className="frontend-structure"
+            aria-labelledby="frontend-structure-title"
+            data-reveal
+            data-reveal-delay="3"
+          >
+            <header className="frontend-structure-heading">
+              <p className="eyebrow">structure</p>
+              <h2 id="frontend-structure-title">FSD 기반 폴더 구조</h2>
+            </header>
+            <div className="frontend-structure-content">
+              <div className="frontend-structure-image">
+                <Image
+                  src={project.structure.src}
+                  alt={project.structure.alt}
+                  width={project.structure.width}
+                  height={project.structure.height}
+                  sizes="(max-width: 820px) 100vw, 36vw"
+                />
+              </div>
+              <div className="frontend-structure-copy">
+                <p>
+                  <BoldText content={project.structure.description} />
+                </p>
+                <ul>
+                  {project.structure.points.map(point => (
+                    <li key={point}>
+                      <BoldText content={point} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </section>
+        ) : null}
       </section>
 
       <section className="section project-flow-section container">
         <div data-reveal>
           <p className="eyebrow">User Flow</p>
-          <h2>사용자 경험을 설계한 흐름</h2>
+          <h2>사용자 행동을 중심으로 설계한 흐름</h2>
         </div>
         <ol className="project-flow">
           {project.flow.map((step, index) => (
-            <li key={step.title} data-reveal data-reveal-delay={(index % 3) + 1}>
+            <li
+              key={step.title}
+              data-reveal
+              data-reveal-delay={(index % 3) + 1}
+            >
               <div
                 className={`project-flow-media${
                   step.images?.length === 1 ? " is-single" : ""
                 }`}
               >
                 {step.images?.length ? (
-                  step.images.map((image) => (
+                  step.images.map(image => (
                     <figure className="project-flow-image" key={image.src}>
                       <Image
                         src={image.src}
@@ -124,12 +178,16 @@ export function ProjectDetail({ project }: { project: Project }) {
                 <div className="project-flow-notes">
                   <div>
                     <strong>기능</strong>
-                    <p>{step.description}</p>
+                    <p>
+                      <BoldText content={step.description} />
+                    </p>
                   </div>
                   {step.solution ? (
                     <div>
                       <strong>문제 해결</strong>
-                      <p>{step.solution}</p>
+                      <p>
+                        <BoldText content={step.solution} />
+                      </p>
                     </div>
                   ) : null}
                 </div>
@@ -157,35 +215,14 @@ export function ProjectDetail({ project }: { project: Project }) {
       ) : null}
 
       <section
-        className="story container"
-        aria-labelledby="challenge-title"
+        className="section problem-solving container"
+        aria-labelledby="problem-solving-title"
       >
         <div data-reveal>
-          <p className="eyebrow">Challenge &amp; Solution</p>
-          <h2 id="challenge-title">문제를 발견하고 해결한 과정</h2>
+          <p className="eyebrow">Technical Point</p>
+          <h2 id="problem-solving-title">기술적 포인트</h2>
         </div>
-        <div className="story-grid">
-          <article data-reveal data-reveal-delay="1">
-            <h3>Challenge</h3>
-            <StoryContent content={project.challenge} />
-          </article>
-          <article data-reveal data-reveal-delay="2">
-            <h3>Decision</h3>
-            <StoryContent content={project.solution} />
-          </article>
-          <article data-reveal data-reveal-delay="3">
-            <h3>Outcome</h3>
-            <StoryContent content={project.outcome} />
-          </article>
-        </div>
-      </section>
-
-      <section className="section container">
-        <div data-reveal>
-          <p className="eyebrow">Technical Highlights</p>
-          <h2>기술적 포인트</h2>
-        </div>
-        <div className="highlight-grid">
+        <div className="technical-details">
           {project.highlights.map((highlight, index) => (
             <article
               key={highlight.title}
@@ -193,7 +230,26 @@ export function ProjectDetail({ project }: { project: Project }) {
               data-reveal-delay={(index % 3) + 1}
             >
               <h3>{highlight.title}</h3>
-              <StoryContent content={highlight.description} />
+              <div className="technical-decision">
+                <div>
+                  <strong>문제</strong>
+                  <p>
+                    <BoldText content={highlight.problem} />
+                  </p>
+                </div>
+                <div>
+                  <strong>판단 및 구현</strong>
+                  <p>
+                    <BoldText content={highlight.decision} />
+                  </p>
+                </div>
+                <div>
+                  <strong>결과</strong>
+                  <p>
+                    <BoldText content={highlight.outcome} />
+                  </p>
+                </div>
+              </div>
             </article>
           ))}
         </div>

@@ -14,8 +14,14 @@ describe("ProjectDetail", () => {
       screen.getByRole("heading", { name: "새집사" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "사용자 경험을 설계한 흐름" }),
+      screen.getByRole("heading", { name: "사용자 행동을 중심으로 설계한 흐름" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "문제 해결과 기술적 판단" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "문제를 발견하고 해결한 과정" }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "자격 분석 결과" }),
     ).toBeInTheDocument();
@@ -23,9 +29,15 @@ describe("ProjectDetail", () => {
       screen.queryByRole("heading", { name: "화면 미리보기" }),
     ).not.toBeInTheDocument();
     expect(screen.queryByText("Flow 01")).not.toBeInTheDocument();
-    expect(screen.getAllByRole("img")).toHaveLength(19);
+    expect(screen.getAllByRole("img")).toHaveLength(20);
     expect(
       screen.getByRole("img", { name: "새집사 서비스 아키텍처" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "FSD 기반 폴더 구조" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "새집사 FSD 기반 프론트엔드 폴더 구조" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "자격 검증 화면" }),
@@ -44,8 +56,9 @@ describe("ProjectDetail", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/API 연동 진행/)).toBeInTheDocument();
     expect(
-      screen.getByText(/전체 과정을 목표 설정 → 날짜별 계획 생성/),
+      screen.getByRole("heading", { name: "Learning Journey" }),
     ).toBeInTheDocument();
+    expect(screen.getAllByText("판단 및 구현")).toHaveLength(3);
     expect(
       screen.getByRole("heading", { name: "AI 요약과 확인 퀴즈" }),
     ).toBeInTheDocument();

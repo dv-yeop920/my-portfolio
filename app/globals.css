@@ -644,14 +644,14 @@ h3 {
 }
 
 .case-grid article,
-.story-grid article {
+.decision-grid article {
   padding: 34px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
 }
 
-.story-grid article p + p {
+.decision-grid article p + p {
   margin-top: 18px;
 }
 
@@ -687,8 +687,59 @@ h3 {
   border-radius: 12px;
 }
 
-.case-study > .section,
-.story {
+.frontend-structure {
+  grid-column: 1 / -1;
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.frontend-structure-heading {
+  margin-bottom: 28px;
+}
+
+.frontend-structure-heading h2 {
+  margin-bottom: 0;
+}
+
+.frontend-structure-content {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+  align-items: start;
+  gap: 42px;
+}
+
+.frontend-structure-image {
+  display: flex;
+  justify-content: center;
+}
+
+.frontend-structure-image img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.frontend-structure-copy h2 {
+  margin-bottom: 18px;
+}
+
+.frontend-structure-copy > p:not(.eyebrow) {
+  margin-bottom: 22px;
+}
+
+.frontend-structure-copy ul {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-left: 21px;
+}
+
+.case-study > .section {
   padding: 0 0 72px;
 }
 
@@ -804,7 +855,7 @@ h3 {
   gap: 6px;
 }
 
-.project-flow-notes strong {
+.project-flow-notes > div > strong {
   color: var(--ink);
   font-size: 0.78rem;
   letter-spacing: 0.08em;
@@ -881,22 +932,62 @@ h3 {
   font-size: 0.94rem;
 }
 
-.story {
+.highlight-grid p,
+.retrospective p {
   margin-bottom: 0;
+  color: var(--ink-soft);
 }
 
-.story-grid {
+.technical-details {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 38px;
 }
 
-.story-grid p,
-.highlight-grid p,
-.retrospective p {
+.technical-details article {
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 220ms ease, border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.technical-details article:hover {
+  border-color: rgba(37, 99, 235, 0.28);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(16, 36, 56, 0.06);
+}
+
+.technical-details p {
   margin-bottom: 0;
   color: var(--ink-soft);
+}
+
+.case-study p strong,
+.case-study li strong {
+  color: inherit;
+}
+
+.technical-decision {
+  display: grid;
+  gap: 18px;
+}
+
+.technical-decision > div {
+  display: grid;
+  gap: 6px;
+}
+
+.technical-decision > div + div {
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.technical-decision > div > strong {
+  color: var(--accent);
+  font-size: 0.82rem;
 }
 
 .retrospective {
@@ -1054,10 +1145,23 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
 
   .skill-grid,
   .case-grid,
-  .story-grid,
   .highlight-grid,
-  .project-gallery {
+  .technical-details,
+  .project-gallery,
+  .frontend-structure-content {
     grid-template-columns: 1fr;
+  }
+
+  .frontend-structure-content {
+    gap: 28px;
+  }
+
+  .frontend-structure {
+    padding: 26px;
+  }
+
+  .frontend-structure-image img {
+    max-width: 360px;
   }
 
   .project-grid {
@@ -1086,8 +1190,7 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
     padding: 56px 0;
   }
 
-  .case-study > .section,
-  .story {
+  .case-study > .section {
     padding-bottom: 56px;
   }
 

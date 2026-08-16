@@ -15,6 +15,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+function BoldText({ content }: { content: string }) {
+  return content.split("**").map((text, index) =>
+    index % 2 === 1 ? <strong key={`${index}-${text}`}>{text}</strong> : text,
+  );
+}
+
 export default function HomePage() {
   const profile = portfolio.profile;
 
@@ -69,7 +75,7 @@ export default function HomePage() {
                   data-reveal-delay={(index % 3) + 1}
                 >
                   <h3>{highlight.title}</h3>
-                  <p>{highlight.description}</p>
+                  <p><BoldText content={highlight.description} /></p>
                 </li>
               ))}
             </ul>

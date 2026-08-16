@@ -19,7 +19,7 @@ export function ProjectsSection() {
     <section id="projects" className="section projects container">
       <SectionHeading
         eyebrow="Selected Work"
-        title="Projects"
+        title="Project"
         description="구현 범위와 문제 해결 과정을 확인할 수 있는 대표 프로젝트입니다."
       />
       <div className="project-grid">
