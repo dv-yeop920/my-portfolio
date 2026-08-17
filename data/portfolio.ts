@@ -53,6 +53,7 @@ export type Project = {
   stack: string[];
   highlights: TechnicalHighlight[];
   retrospective: string;
+  problems?: ProjectFlowStep[];
   flow: ProjectFlowStep[];
   screens: ProjectScreen[];
   links: { label: string; href: string }[];
@@ -410,20 +411,20 @@ export const portfolio = {
         {
           title: "AI 기반 개발 프로세스 설계",
           problem:
-            "AI 활용 시 구현 범위가 넓어지거나 프로젝트 의도와 다른 결과가 나오면 수정 비용이 커질 수 있었습니다.",
+            "AI 활용 시 구현 범위가 넓어지거나 프로젝트 의도와 다른 결과가 나오면 매번 수정 하느라 컨텍스트 비용이 많이 들어갔습니다.",
           decision:
-            "AI의 결과를 그대로 반영하지 않고 조사, 계획, 구현, 리뷰 단계마다 범위와 결과를 검토하기로 했습니다. Harness Engineering 기반으로 **규칙과 작업 범위를 먼저 정의**하고 **조사 → 계획 → 승인 → 구현 → 리뷰와 Agent 역할**을 분리했습니다.",
+            "AI의 결과를 그대로 반영하지 않고 조사, 계획, 구현, 리뷰 단계마다 범위와 결과를 검토하기로 했습니다. Harness Engineering 기반으로 **규칙과 작업 범위를 먼저 정의**하고 **조사 → 계획 → 승인 → 구현 → 리뷰 순으로 작업할 수 있게 Agent, skill, hook을 구성하고 역할**을 분리했습니다.",
           outcome:
-            "기획 의도와 아키텍처를 단계별로 검토하며 **구현 범위 이탈과 수정 비용**을 줄였습니다.",
+            "기획 의도와 아키텍처를 단계별로 검토하며 **구현 범위 이탈을 방지할 수 있었고 컨텍스트 비용**을 줄였습니다.",
         },
         {
-          title: "Supabase 기반 데이터 흐름 설계",
+          title: "MCP 기반 개발 및 배포 환경 연동",
           problem:
-            "일정 신청, 배정, 확정, 급여가 분리되면 같은 근무 정보를 반복 입력하거나 정산 오류가 생길 수 있었습니다.",
+            "코드 변경 이후 데이터 구조와 화면 동작, 배포 상태를 각각 다른 도구에서 확인하면 작업 흐름이 자주 끊기고 확인 과정도 반복됐습니다.",
           decision:
-            "일정 정보가 한 번 입력되면 신청부터 급여까지 같은 데이터를 재사용하도록 관계형 흐름을 설계하기로 했습니다. **회원 → 일정 신청 → 인원 배정 → 근무 확정 → 급여 계산**이 이어지도록 Supabase DB 구조를 설계하고 확정 근무시간, 시급, 수당을 급여 계산에 연결했습니다.",
+            "Vercel, GitHub, Supabase, Playwright MCP를 작업 환경에 연결했습니다. GitHub에서 변경 이력과 코드 맥락을 확인하고 Supabase에서 스키마와 데이터 상태를 조회했습니다. Playwright로 주요 화면 동작을 점검한 뒤 Vercel에서 배포 상태와 로그를 확인하도록 개발 흐름을 구성했습니다.",
           outcome:
-            "관리자와 근무자가 보는 일정 / 급여 정보를 **하나의 데이터 흐름**으로 연결해 중복 입력과 수기 대조를 줄였습니다.",
+            "구현부터 화면 검증과 배포 확인까지 필요한 정보를 한 작업 흐름에서 확인해 **반복 확인 시간과 도구 전환 비용**을 줄였습니다.",
         },
         {
           title: "Zod 기반 입력 데이터 검증",
@@ -432,42 +433,101 @@ export const portfolio = {
           decision:
             "입력 오류는 저장 이후가 아니라 화면에서 처리하기 전에 차단하고 기능마다 검증 기준을 독립적으로 관리하기로 했습니다. 기능별로 **Zod 스키마를 분리**해 입력 조건과 예외를 정의하고 데이터를 처리하기 전에 스키마 기준으로 검증했습니다.",
           outcome:
-            "유효하지 않은 값이 이후 로직으로 전달되는 경우를 줄이고 입력 조건을 기능별로 일관되게 관리했습니다.",
+            "유효하지 않은 값이 이후 로직으로 전달되는 경우를 차단 하여 안정성이 증가 했습니다",
         },
       ],
       retrospective:
         "실제 사용자의 요구사항을 기능으로 옮기는 과정에서 **화면 구현 전에 요구사항과 예외 상황을 정리하고 데이터 흐름과 상태 변화, 컴포넌트의 책임을 설계하는 과정**을 더 깊게 경험했습니다. 사용자와 관리자처럼 역할이 다른 흐름을 하나의 시스템으로 연결하며 변경과 확장을 고려해 구조를 나누는 등 **프론트엔드에서도 시스템 디자인 관점이 중요하다는 기준**을 만들었습니다.\n\nAI 개발에서는 **작업 규칙과 범위를 먼저 정리하고 단계별로 검토하는 방식**을 익혔습니다. MCP를 연결해 필요한 도구와 컨텍스트를 활용하면서 **요구사항 분석부터 설계와 구현 검토까지 AI를 개발 과정에 연결하는 경험**을 쌓았습니다.",
-      flow: [
+      problems: [
         {
-          title: "회원가입 & 로그인",
+          title: "카카오톡과 메모장으로 관리하던 스케줄",
           description:
-            "가입 코드 입력 / 계정 생성 / 근무자 정보 등록 / 유효성 검사",
+            "관리자가 채팅방에 일정을 공지하면 근무자가 메시지로 가능한 날짜를 답했고 날짜별 포지션과 배정 현황도 같은 대화에서 공유했습니다. 이후 신청 내역은 메모장으로 옮겨 출근 불가 날짜와 배정 정보를 직접 정리했습니다.",
           solution:
-            "내부 구성원만 가입할 수 있도록 Supabase에 저장된 가입 코드를 입력해야 회원가입을 할 수 있도록 구성했습니다. 또한 잘못된 데이터가 저장되는 것을 방지하기 위해 이름, 연락처 등 **필수 입력값을 검증**해 유효한 코드와 정보가 확인된 경우에만 계정을 생성하도록 회원가입 흐름을 설계했습니다.",
+            "응답 형식과 작성 시점이 제각각이라 날짜별 신청자와 변경 사항을 다시 확인해야 했습니다. 일정이 바뀔 때마다 채팅과 메모를 함께 수정해야 했고 이전 배정 기록을 찾거나 근무시간과 수당을 기준으로 급여를 다시 계산하는 일도 반복됐습니다.",
           images: [
             {
-              src: "/projects/laviebel/signup.png",
-              alt: "라비에벨 가입 코드 입력 화면",
+              src: "/projects/laviebel/schedule-appli-kakao.png",
+              alt: "카카오톡으로 근무 가능 날짜를 신청받는 화면",
             },
             {
-              src: "/projects/laviebel/signup2.png",
-              alt: "라비에벨 근무자 정보 입력 화면",
+              src: "/projects/laviebel/schdule-check-memo.png",
+              alt: "메모장으로 근무 가능 날짜를 정리하는 화면",
+            },
+            {
+              src: "/projects/laviebel/schedule-appli-kakao2.png",
+              alt: "카카오톡으로 날짜별 포지션 배정을 공유하는 화면",
+            },
+          ],
+        },
+      ],
+      flow: [
+        {
+          title: "회원가입",
+          description:
+            "가입 코드 입력 / 이메일 인증 / 근무자 정보 등록 / 유효성 검사",
+          solution:
+            "내부 구성원만 가입할 수 있도록 Supabase에 저장된 가입 코드를 확인한 뒤 이메일 인증과 정보 입력을 진행하도록 구성했습니다. 입력값은 저장 전에 검증해 유효한 코드와 정보가 확인된 경우에만 계정을 생성하도록 설계했습니다.",
+          images: [
+            {
+              src: "/projects/laviebel/signup-verify.png",
+              alt: "라비에벨 회원가입 유효성 검사",
+            },
+            {
+              src: "/projects/laviebel/signup.png",
+              alt: "라비에벨 회원가입 정보 입력",
+            },
+            {
+              src: "/projects/laviebel/signup-email.PNG",
+              alt: "라비에벨 이메일 확인",
+            },
+          ],
+        },
+        {
+          title: "로그인",
+          description: "이메일 로그인 / 인증 상태 확인 / 역할별 화면 이동",
+          solution:
+            "회원과 관리자가 같은 진입 화면을 사용하되 인증이 완료되면 역할에 맞는 업무 화면으로 이동하도록 구성했습니다. 로그인 상태를 기준으로 권한이 필요한 화면의 접근 흐름을 분리했습니다.",
+          images: [
+            {
+              src: "/projects/laviebel/login.PNG",
+              alt: "라비에벨 로그인 화면",
+            },
+            {
+              src: "/projects/laviebel/login-verify.PNG",
+              alt: "라비에벨 로그인 인증 화면",
+            },
+          ],
+        },
+        {
+          title: "대시보드 / 관리자, 근무자",
+          description: "역할별 일정 현황 확인 / 필요한 업무로 바로 이동",
+          solution:
+            "로그인 후 관리자는 일정 운영에 필요한 현황을 확인하고 근무자는 자신의 근무 일정을 먼저 볼 수 있도록 역할별 첫 화면을 나눴습니다. 자주 사용하는 업무 화면으로 바로 이동할 수 있게 해 다음 행동을 빠르게 선택하도록 구성했습니다.",
+          images: [
+            {
+              src: "/projects/laviebel/admin-dashboard.PNG",
+              alt: "라비에벨 관리자의 대시보드 화면",
+            },
+            {
+              src: "/projects/laviebel/worker-dashboard.PNG",
+              alt: "라비에벨 근무자의 대시보드 화면",
             },
           ],
         },
         {
           title: "일정 생성 / 관리자",
-          description: "스케줄 신청 오픈, 마감 / 날짜별 배정 날짜 조회",
+          description: "스케줄 공지 / 신청 오픈과 마감 / 복수 날짜 등록",
           solution:
-            "관리자가 신청 가능한 날짜를 직접 선택해 스케줄을 오픈하고 근무자에게 신청 가능한 일정을 명확하게 보여줄 수 있도록 흐름을 구성했습니다. 이후 날짜별로 배정된 인원을 조회, 수정할 수 있게 해 일정 생성부터 인원 배치와 변경 관리까지 날짜 단위로 이어지도록 페이지 구조를 설계했습니다.",
+            "관리자가 신청 가능한 날짜를 직접 선택해 일정을 공지하고 신청 기간을 관리할 수 있도록 구성했습니다. 여러 날짜를 한 번에 등록하고 날짜별 상태를 확인할 수 있게 해 매주 반복되는 일정 생성 작업을 줄였습니다.",
           images: [
             {
-              src: "/projects/laviebel/schedule-create.png",
-              alt: "라비에벨 관리자의 일정 등록 화면",
+              src: "/projects/laviebel/admin-schedule-calander.PNG",
+              alt: "라비에벨 관리자의 근무 확정 화면",
             },
             {
-              src: "/projects/laviebel/schedule-create-dates.png",
-              alt: "라비에벨 관리자의 복수 일정 등록 화면",
+              src: "/projects/laviebel/admin-schedule-appli.PNG",
+              alt: "라비에벨 관리자의 근무자 배정 화면",
             },
           ],
         },
@@ -476,15 +536,15 @@ export const portfolio = {
           description:
             "신청 가능 일정 조회 / 캘린더 날짜 선택 / 근무 신청 / 신청 상태 확인",
           solution:
-            "근무 일정은 날짜 기준으로 확인하는 정보이기 때문에 신청 가능한 날짜를 관리자 일정 페이지와 동일하게 캘린더에 표시해 한눈에 파악할 수 있도록 구성했습니다. 근무자는 원하는 날짜를 직접 선택해 신청하고 현재 상태까지 같은 흐름에서 확인할 수 있게 해 일정 확인부터 신청까지의 과정을 직관적으로 연결했습니다.",
+            "근무 일정은 날짜 기준으로 확인하는 정보이기 때문에 신청 가능한 날짜를 캘린더에 표시해 한눈에 파악할 수 있도록 구성했습니다. 근무자는 원하는 날짜를 직접 선택해 신청하고 현재 상태까지 같은 흐름에서 확인할 수 있게 했습니다.",
           images: [
             {
-              src: "/projects/laviebel/schedule-application.png",
-              alt: "라비에벨 근무자의 일정 신청 화면",
+              src: "/projects/laviebel/woker-schedule-calander.PNG",
+              alt: "라비에벨 근무자의 일정 캘린더 화면",
             },
             {
-              src: "/projects/laviebel/application-status.png",
-              alt: "라비에벨 근무자의 일정 신청 상태 화면",
+              src: "/projects/laviebel/woker-schedule-appli.PNG",
+              alt: "라비에벨 근무자의 일정 신청 화면",
             },
           ],
         },
@@ -493,15 +553,16 @@ export const portfolio = {
           description:
             "날짜별 신청자 조회 / 포지션별 인원 배정 / 이전 배정 이력 확인 / 근무 확정, 수정",
           solution:
-            "기존에는 카카오톡 신청 내용을 메모장에 옮겨 날짜별 근무 가능 인원을 다시 정리하고 이전 스케줄을 찾아보며 포지션 배치까지 직접 맞춰야 했습니다. 이를 **날짜별 신청자와 기존 배정 정보를 한 화면에서 확인**하고 바로 포지션을 배정 및 수정할 수 있도록 구성해 흩어진 정보를 찾고 비교하는 과정을 줄였습니다.",
+            "날짜별 신청자와 기존 배정 정보를 한 화면에서 확인하고 바로 포지션을 배정 및 수정할 수 있도록 구성했습니다. 흩어진 정보를 찾고 비교하던 과정을 줄이고 인원 배정과 확정을 날짜 단위로 이어지게 했습니다.",
           images: [
             {
-              src: "/projects/laviebel/staff-assignment.png",
+              src: "/projects/laviebel/admin-schedule-create.png",
               alt: "라비에벨 관리자의 근무자 배정 화면",
             },
+
             {
-              src: "/projects/laviebel/assignment-confirmation.png",
-              alt: "라비에벨 관리자의 근무 확정 화면",
+              src: "/projects/laviebel/admin-schedule-create-list.PNG",
+              alt: "라비에벨 관리자의 복수 일정 등록 화면",
             },
           ],
         },
@@ -509,10 +570,14 @@ export const portfolio = {
           title: "확정 일정 / 근무자",
           description: "확정 일정 / 근무시간 / 포지션 조회",
           solution:
-            "기존에는 확정된 스케줄을 확인하려면 카카오톡 대화를 다시 찾거나 개인 메모장에 일정을 따로 옮겨 관리해야 했습니다. **확정된 근무일만 캘린더에 모아 보여주고** 날짜를 선택하면 근무시간과 포지션을 바로 확인할 수 있도록 구성해 자신의 출근 일정을 한눈에 파악할 수 있게 했습니다.",
+            "확정된 근무일을 일정표에서 확인하고 날짜를 선택하면 근무시간과 포지션을 바로 확인할 수 있도록 구성했습니다. 월,주,일 로 필터링해서 볼 수 있고 전체 스케줄 같이 근무 하는 근무자들이 궁금하면 테이블 형태로 한눈에 파악할 수 있게 했습니다.",
           images: [
             {
-              src: "/projects/laviebel/confirmed-schedule.png",
+              src: "/projects/laviebel/woker-schedule-create-list.PNG",
+              alt: "라비에벨 근무자 일정 조회",
+            },
+            {
+              src: "/projects/laviebel/common-schedule-table.png",
               alt: "라비에벨 근무자의 확정 일정 조회 화면",
             },
           ],
@@ -521,27 +586,23 @@ export const portfolio = {
           title: "급여 관리 / 근무자",
           description: "확정 근무시간 기반 급여 계산 / 주, 월 급여 조회",
           solution:
-            "기존에는 근무시간과 수당을 직접 계산해 급여를 확인했고 실제 지급액과 차이가 생기면 다시 계산해야 했습니다. **확정된 근무 일정과 시급, 수당을 기준으로 급여를 자동 계산**하고 주, 월 단위로 내역을 확인할 수 있게 해 수기 계산과 금액을 다시 대조하는 과정을 줄였습니다.",
+            "확정된 근무 일정과 시급, 수당을 기준으로 급여를 자동 계산하고 주, 월 단위로 내역을 확인할 수 있게 했습니다. 수기 계산과 실제 지급액을 다시 대조하는 과정을 줄였습니다.",
           images: [
             {
-              src: "/projects/laviebel/payroll.png",
+              src: "/projects/laviebel/common-pay.PNG",
               alt: "라비에벨 근무자의 급여 조회 화면",
             },
           ],
         },
         {
-          title: "가입 코드 관리 · 관리자",
+          title: "가입 코드 관리 / 관리자",
           description: "가입 코드 발급 / 사용 횟수 관리",
           solution:
-            "가입 코드를 운영 상황에 맞게 관리할 수 있도록 **Supabase에 코드별 사용 가능 횟수와 활성 상태를 저장**하는 구조를 설계했습니다. 관리자는 각 코드의 상태를 조회, 수정하고 사용 횟수가 소진된 경우 신규 코드를 발급하거나 갱신할 수 있도록 구현해 회원가입에 사용하는 코드를 데이터 기준으로 관리할 수 있게 했습니다.",
+            "가입 코드를 운영 상황에 맞게 관리할 수 있도록 Supabase에 코드별 사용 가능 횟수와 활성 상태를 저장하는 구조를 설계했습니다. 관리자는 코드 상태를 조회하고 사용 횟수가 소진되면 신규 코드를 발급하거나 갱신할 수 있습니다.",
           images: [
             {
-              src: "/projects/laviebel/invite-code.png",
+              src: "/projects/laviebel/admin-code.png",
               alt: "라비에벨 관리자의 가입 코드 설정 화면",
-            },
-            {
-              src: "/projects/laviebel/administrator-management.png",
-              alt: "라비에벨 관리자의 구성원 관리 화면",
             },
           ],
         },
@@ -549,11 +610,28 @@ export const portfolio = {
           title: "공지 관리 / 관리자",
           description: "공지 등록 / 조회 / 수정 / 삭제",
           solution:
-            "중요 공지 사항을 채팅방에 따로 알리면 중요한 내용이 대화에 묻히기 쉽기 때문에 관리자가 필요한 내용을 공지로 등록하고 대상 근무자에게 전달할 수 있게 해 중요 사항을 확인할 수 있게 했습니다.",
+            "중요 공지 사항이 채팅 대화에 묻히지 않도록 관리자가 필요한 내용을 공지로 등록하고 근무자가 서비스 안에서 확인할 수 있게 했습니다.",
           images: [
             {
-              src: "/projects/laviebel/admin-notification.png",
+              src: "/projects/laviebel/admin-notifi.PNG",
               alt: "라비에벨 관리자의 공지 작성 화면",
+            },
+          ],
+        },
+        {
+          title: "인원 관리 / 관리자",
+          description: "근무자 조회 / 상세 조회 / 정보 수정",
+          solution:
+            "근무자의 리스트를 조회하고 포지션, 시급, 가능한 포지션 등 수정해야할 사항이 생기면 바로 수정할 수 있도록 했습니다.",
+          images: [
+            {
+              src: "/projects/laviebel/admin-worker-list.png",
+              alt: "라비에벨 관리자의 구성원 관리 화면",
+            },
+
+            {
+              src: "/projects/laviebel/admin-worker-detail.png",
+              alt: "라비에벨 관리자의 근무자 상세 화면",
             },
           ],
         },

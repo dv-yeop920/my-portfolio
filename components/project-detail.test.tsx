@@ -14,7 +14,7 @@ describe("ProjectDetail", () => {
       screen.getByRole("heading", { name: "새집사" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "사용자 행동을 중심으로 설계한 흐름" }),
+      screen.getByRole("heading", { name: "사용자 흐름 설계" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "기술적 포인트" }),
@@ -45,25 +45,6 @@ describe("ProjectDetail", () => {
     expect(screen.queryByText(/70점/)).not.toBeInTheDocument();
   });
 
-  it("shows the RunIt learning flow", () => {
-    const project = getProjectBySlug("ai-study-planner");
-    if (!project) throw new Error("Fixture project is required");
-
-    render(<ProjectDetail project={project} />);
-
-    expect(
-      screen.getByRole("heading", { name: "런잇" }),
-    ).toBeInTheDocument();
-    expect(screen.getByText(/API 연동 진행/)).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "Learning Journey" }),
-    ).toBeInTheDocument();
-    expect(screen.getAllByText("판단 및 구현")).toHaveLength(3);
-    expect(
-      screen.getByRole("heading", { name: "AI 요약과 확인 퀴즈" }),
-    ).toBeInTheDocument();
-  });
-
   it("shows the Laviebel scheduling and payroll automation story", () => {
     const project = getProjectBySlug("laviebel-schedule-manager");
     if (!project) throw new Error("Fixture project is required");
@@ -77,10 +58,10 @@ describe("ProjectDetail", () => {
       screen.queryByText("주간 스케줄 작성 시간 평균 2시간 → 30분 단축"),
     ).not.toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "Supabase 기반 데이터 흐름 설계" }),
+      screen.getByRole("heading", { name: "MCP 기반 개발 및 배포 환경 연동" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "급여 관리 · 관리자 + 근무자" }),
+      screen.getByRole("heading", { name: "급여 관리 / 근무자" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "라비에벨 근무자의 급여 조회 화면" }),

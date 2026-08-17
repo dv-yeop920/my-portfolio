@@ -19,6 +19,83 @@ function StoryContent({ content }: { content: string }) {
   ));
 }
 
+function ProjectFlowList({
+  steps,
+  descriptionLabel,
+  solutionLabel,
+}: {
+  steps: Project["flow"];
+  descriptionLabel: string;
+  solutionLabel: string;
+}) {
+  return (
+    <ol className="project-flow">
+      {steps.map((step, index) => (
+        <li
+          key={step.title}
+          data-reveal
+          data-reveal-delay={(index % 3) + 1}
+        >
+          <div
+            className={`project-flow-media${
+              step.images?.length === 1 ? " is-single" : ""
+            }`}
+          >
+            {step.images?.length ? (
+              step.images.map(image => (
+                <figure className="project-flow-image" key={image.src}>
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    width={1170}
+                    height={2532}
+                    sizes="(max-width: 820px) 75vw, 22vw"
+                    unoptimized={image.unoptimized}
+                  />
+                </figure>
+              ))
+            ) : step.image && step.alt ? (
+              <figure className="project-flow-image">
+                <Image
+                  src={step.image}
+                  alt={step.alt}
+                  width={960}
+                  height={640}
+                />
+              </figure>
+            ) : (
+              <div className="project-media-placeholder" aria-hidden="true">
+                <span>Flow {String(index + 1).padStart(2, "0")}</span>
+                <strong>Image coming soon</strong>
+              </div>
+            )}
+          </div>
+          <div className="project-flow-copy">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <h3>{step.title}</h3>
+            <div className="project-flow-notes">
+              <div>
+                <strong>{descriptionLabel}</strong>
+                <p>
+                  <BoldText content={step.description} />
+                </p>
+              </div>
+              {step.solution ? (
+                <div>
+                  <strong>{solutionLabel}</strong>
+                  <p>
+                    <BoldText content={step.solution} />
+                  </p>
+                </div>
+              ) : null}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  );
+}
+
 export function ProjectDetail({ project }: { project: Project }) {
   const hasFlowImages = project.flow.some(step => step.images?.length);
 
@@ -127,75 +204,30 @@ export function ProjectDetail({ project }: { project: Project }) {
         ) : null}
       </section>
 
+      {project.problems?.length ? (
+        <section className="section project-flow-section container">
+          <div data-reveal>
+            <p className="eyebrow">Before</p>
+            <h2>기존의 문제점</h2>
+          </div>
+          <ProjectFlowList
+            steps={project.problems}
+            descriptionLabel="상황"
+            solutionLabel="문제"
+          />
+        </section>
+      ) : null}
+
       <section className="section project-flow-section container">
         <div data-reveal>
           <p className="eyebrow">User Flow</p>
           <h2>사용자 흐름 설계</h2>
         </div>
-        <ol className="project-flow">
-          {project.flow.map((step, index) => (
-            <li
-              key={step.title}
-              data-reveal
-              data-reveal-delay={(index % 3) + 1}
-            >
-              <div
-                className={`project-flow-media${
-                  step.images?.length === 1 ? " is-single" : ""
-                }`}
-              >
-                {step.images?.length ? (
-                  step.images.map(image => (
-                    <figure className="project-flow-image" key={image.src}>
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        width={1170}
-                        height={2532}
-                        sizes="(max-width: 820px) 75vw, 22vw"
-                        unoptimized={image.unoptimized}
-                      />
-                    </figure>
-                  ))
-                ) : step.image && step.alt ? (
-                  <figure className="project-flow-image">
-                    <Image
-                      src={step.image}
-                      alt={step.alt}
-                      width={960}
-                      height={640}
-                    />
-                  </figure>
-                ) : (
-                  <div className="project-media-placeholder" aria-hidden="true">
-                    <span>Flow {String(index + 1).padStart(2, "0")}</span>
-                    <strong>Image coming soon</strong>
-                  </div>
-                )}
-              </div>
-              <div className="project-flow-copy">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <h3>{step.title}</h3>
-                <div className="project-flow-notes">
-                  <div>
-                    <strong>기능</strong>
-                    <p>
-                      <BoldText content={step.description} />
-                    </p>
-                  </div>
-                  {step.solution ? (
-                    <div>
-                      <strong>문제 해결</strong>
-                      <p>
-                        <BoldText content={step.solution} />
-                      </p>
-                    </div>
-                  ) : null}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ol>
+        <ProjectFlowList
+          steps={project.flow}
+          descriptionLabel="기능"
+          solutionLabel="문제 해결"
+        />
       </section>
 
       {!hasFlowImages ? (
