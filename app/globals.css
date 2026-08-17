@@ -1169,6 +1169,10 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
     gap: 28px;
   }
 
+  .case-study--laviebel-schedule-manager .frontend-structure-content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
   .frontend-structure {
     padding: 26px;
   }

@@ -107,6 +107,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                   width={project.structure.width}
                   height={project.structure.height}
                   sizes="(max-width: 820px) 100vw, 36vw"
+                  unoptimized
                 />
               </div>
               <div className="frontend-structure-copy">
