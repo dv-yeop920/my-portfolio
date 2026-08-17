@@ -69,5 +69,28 @@ describe("ProjectDetail", () => {
     expect(
       screen.getByRole("img", { name: "라비에벨 스케줄 관리 서비스 아키텍처" }),
     ).toBeInTheDocument();
+    expect(screen.getByLabelText("다음 개발 계획")).toBeInTheDocument();
+    expect(screen.getByText("Next")).toBeInTheDocument();
+    expect(screen.getByText(/웹 푸시 알림 기능/)).toBeInTheDocument();
+  });
+
+  it("shows Mingle as a planning-stage MVP case study", () => {
+    const project = getProjectBySlug("mingle-group-chemistry");
+    if (!project) throw new Error("Fixture project is required");
+
+    render(<ProjectDetail project={project} />);
+
+    expect(screen.getByRole("heading", { name: "Mingle" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "프로젝트 개요" }),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/OpenAI API/)).toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "주요 작업" })).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "MVP 사용자 흐름" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "MVP 설계 방향" }),
+    ).not.toBeInTheDocument();
   });
 });

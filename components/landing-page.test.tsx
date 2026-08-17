@@ -69,6 +69,7 @@ describe("HomePage", () => {
     ).toEqual([
       "새집사 상세 페이지",
       "라비에벨 스케줄 관리 상세 페이지",
+      "Mingle 상세 페이지",
     ]);
 
     expect(
@@ -82,6 +83,11 @@ describe("HomePage", () => {
     expect(
       screen.getByRole("link", { name: "라비에벨 스케줄 관리 상세 페이지" }),
     ).toHaveAttribute("href", "/projects/laviebel-schedule-manager");
+    expect(screen.getByRole("link", { name: "Mingle 상세 페이지" })).toHaveAttribute(
+      "href",
+      "/projects/mingle-group-chemistry",
+    );
+    expect(screen.getByText("진행 중")).toBeInTheDocument();
     expect(screen.queryByText("개발 완료")).not.toBeInTheDocument();
     expect(screen.queryByText("개발 및 운영 중")).not.toBeInTheDocument();
   });

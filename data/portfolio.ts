@@ -35,6 +35,12 @@ export type Project = {
   slug: string;
   title: string;
   eyebrow: string;
+  status?: string;
+  overviewOnly?: boolean;
+  nextPlan?: {
+    title: string;
+    description: string;
+  };
   summary: string;
   purpose: string;
   team: string;
@@ -52,9 +58,20 @@ export type Project = {
   };
   stack: string[];
   highlights: TechnicalHighlight[];
+  highlightsEyebrow?: string;
+  highlightsTitle?: string;
+  highlightLabels?: {
+    problem: string;
+    decision: string;
+    outcome: string;
+  };
   retrospective: string;
+  retrospectiveTitle?: string;
   problems?: ProjectFlowStep[];
   flow: ProjectFlowStep[];
+  flowTitle?: string;
+  flowDescriptionLabel?: string;
+  flowSolutionLabel?: string;
   screens: ProjectScreen[];
   links: { label: string; href: string }[];
 };
@@ -362,6 +379,11 @@ export const portfolio = {
       eyebrow: "2026.06 - 2026.08",
       summary:
         "웨딩홀 근무자의 일정 조율과 급여 정산을 한곳에서 관리하도록 만든 스케줄 관리 웹 서비스입니다.",
+      nextPlan: {
+        title: "Next",
+        description:
+          "관리자가 공지를 등록하거나 스케줄을 확정할 때 그리고 출근 일정이 다가올 때 근무자에게 알림을 보낼 수 있도록 **웹 푸시 알림 기능을 학습해 적용할 예정입니다.**",
+      },
       purpose:
         "웨딩홀 근무에서 카카오톡으로 받은 신청 내용을 메모장에 옮겨 정리하고 근무 가능 날짜와 이전 포지션 배정 기록을 하나씩 확인해 매주 스케줄을 작성했으며 급여도 직접 계산한 뒤 지급액에 차이가 생기면 다시 계산해야 했습니다. 이를 해결하기 위해 **일정 공지 → 신청 → 배정 → 확정 → 급여 확인** 과정을 하나의 서비스로 연결하고 날짜별 신청 현황과 배정 정보를 한곳에서 관리할 수 있도록 업무 흐름을 재설계했습니다.",
       team: "1인 개인 프로젝트",
@@ -653,6 +675,26 @@ export const portfolio = {
             "확정 근무시간과 수당을 반영한 주간, 월간 급여 내역을 보여 줄 이미지 영역입니다.",
         },
       ],
+      links: [],
+    },
+    {
+      slug: "mingle-group-chemistry",
+      title: "Mingle",
+      eyebrow: "2026.08 -",
+      status: "진행 중",
+      summary:
+        "여러 사람의 MBTI를 조합해 관계의 분위기와 역할 그리고 대화 흐름을 함께 살펴보는 그룹 케미 서비스입니다.",
+      purpose:
+        "MBTI 콘텐츠는 보통 개인 성향이나 두 사람의 궁합을 보여 주는 데 머뭅니다. Mingle은 친구, 팀, 가족처럼 **여러 사람이 함께 있을 때 만들어지는 관계와 분위기**를 살펴보는 서비스로 기획하고 있습니다. 각 구성원의 MBTI를 조합해 누가 대화를 이끄는지 어떤 상황에서 팀워크가 좋아지는지 의견이 엇갈릴 수 있는 지점은 무엇인지 부담 없이 이야기할 수 있는 문장으로 보여 주려 합니다.\n\n그룹 유형을 선택하고 구성원을 추가한 뒤 분석 결과를 확인하는 흐름을 핵심으로 잡고 있습니다. 결과에는 전체 케미 점수뿐 아니라 그룹 분위기, 구성원 역할, 대화 포인트, 갈등 주의점, 가장 잘 어울리는 순간을 담아 단순한 점수 확인에서 끝나지 않고 함께 대화할 수 있도록 설계하려 합니다. **OpenAI API**는 이 결과를 그룹 맥락에 맞는 리포트로 만들기 위한 핵심 기능으로 검토하고 있습니다.\n\n현재 서비스 기획과 모바일 UI 디자인을 진행하고 있습니다. 첫 단계에서는 설치 부담이 없는 웹 MVP로 실제 사용 흐름을 검증하려 합니다. 그룹 생성 완료율, 결과 저장과 공유 행동, 재방문 여부를 살펴보고 사용자가 다시 찾는 기능을 확인한 뒤 **React Native**를 학습해 네이티브 앱으로 확장할 계획입니다. 웹에서 검증한 결과를 기반으로 앱에서는 푸시 알림과 저장된 그룹 관리 그리고 공유 경험을 더 자연스럽게 발전시키고 싶습니다.",
+      team: "1인 개인 프로젝트",
+      contribution: "서비스 기획 / UX 설계 / UI 디자인",
+      overviewOnly: true,
+      role: [],
+      stack: [],
+      highlights: [],
+      retrospective: "",
+      flow: [],
+      screens: [],
       links: [],
     },
   ] satisfies Project[],
