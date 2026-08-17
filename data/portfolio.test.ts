@@ -20,7 +20,12 @@ describe("portfolio project content", () => {
     expect(platform?.screens).toHaveLength(3);
     expect(platform?.flow).toHaveLength(8);
     expect(platform?.flow.flatMap((step) => step.images ?? [])).toHaveLength(18);
-    expect(scheduleManager?.links).toEqual([]);
+    expect(scheduleManager?.links).toEqual([
+      {
+        label: "서비스 바로가기",
+        href: "https://lavi-crew.vercel.app",
+      },
+    ]);
     expect(scheduleManager?.flow).toHaveLength(11);
     expect(scheduleManager?.nextPlan?.title).toBe("Next");
     expect(mingle?.status).toBe("진행 중");

@@ -126,6 +126,21 @@ export function ProjectDetail({ project }: { project: Project }) {
         </div>
         <h1>{project.title}</h1>
         <p className="case-summary">{project.summary}</p>
+        {project.links.length ? (
+          <div className="project-links" aria-label="프로젝트 링크">
+            {project.links.map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                className="project-link"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        ) : null}
         {!project.overviewOnly ? (
           <>
             <dl className="project-facts" aria-label="프로젝트 참여 정보">

@@ -675,7 +675,12 @@ export const portfolio = {
             "확정 근무시간과 수당을 반영한 주간, 월간 급여 내역을 보여 줄 이미지 영역입니다.",
         },
       ],
-      links: [],
+      links: [
+        {
+          label: "서비스 바로가기",
+          href: "https://lavi-crew.vercel.app",
+        },
+      ],
     },
     {
       slug: "mingle-group-chemistry",

@@ -608,6 +608,32 @@ h3 {
   font-size: 1.08rem;
 }
 
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: -14px 0 24px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color 180ms ease, color 180ms ease;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  background: var(--accent);
+  color: var(--surface);
+}
+
 .project-facts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

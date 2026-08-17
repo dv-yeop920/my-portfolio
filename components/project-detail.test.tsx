@@ -72,6 +72,9 @@ describe("ProjectDetail", () => {
     expect(screen.getByLabelText("다음 개발 계획")).toBeInTheDocument();
     expect(screen.getByText("Next")).toBeInTheDocument();
     expect(screen.getByText(/웹 푸시 알림 기능/)).toBeInTheDocument();
+    expect(
+      screen.getByRole("link", { name: "서비스 바로가기" }),
+    ).toHaveAttribute("href", "https://lavi-crew.vercel.app");
   });
 
   it("shows Mingle as a planning-stage MVP case study", () => {
