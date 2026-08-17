@@ -17,7 +17,7 @@ describe("ProjectDetail", () => {
       screen.getByRole("heading", { name: "사용자 행동을 중심으로 설계한 흐름" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "문제 해결과 기술적 판단" }),
+      screen.getByRole("heading", { name: "기술적 포인트" }),
     ).toBeInTheDocument();
     expect(
       screen.queryByRole("heading", { name: "문제를 발견하고 해결한 과정" }),

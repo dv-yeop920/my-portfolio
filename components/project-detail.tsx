@@ -60,7 +60,7 @@ export function ProjectDetail({ project }: { project: Project }) {
         </article>
         <article data-reveal data-reveal-delay="1">
           <p className="eyebrow">My Role</p>
-          <h2>담당 역할</h2>
+          <h2>주요 작업</h2>
           <ul>
             {project.role.map(role => (
               <li key={role}>
@@ -97,7 +97,7 @@ export function ProjectDetail({ project }: { project: Project }) {
           >
             <header className="frontend-structure-heading">
               <p className="eyebrow">structure</p>
-              <h2 id="frontend-structure-title">FSD 기반 폴더 구조</h2>
+              <h2 id="frontend-structure-title">{project.structure.title}</h2>
             </header>
             <div className="frontend-structure-content">
               <div className="frontend-structure-image">
@@ -129,7 +129,7 @@ export function ProjectDetail({ project }: { project: Project }) {
       <section className="section project-flow-section container">
         <div data-reveal>
           <p className="eyebrow">User Flow</p>
-          <h2>사용자 행동을 중심으로 설계한 흐름</h2>
+          <h2>사용자 흐름 설계</h2>
         </div>
         <ol className="project-flow">
           {project.flow.map((step, index) => (

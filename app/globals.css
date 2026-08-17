@@ -705,14 +705,15 @@ h3 {
 
 .frontend-structure-content {
   display: grid;
-  grid-template-columns: minmax(260px, 0.82fr) minmax(0, 1.18fr);
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: start;
   gap: 42px;
 }
 
 .frontend-structure-image {
   display: flex;
-  justify-content: center;
+  width: 410px;
+  justify-content: flex-start;
 }
 
 .frontend-structure-image img {
@@ -722,6 +723,18 @@ h3 {
   height: auto;
   border: 1px solid var(--line);
   border-radius: 12px;
+}
+
+.case-study--laviebel-schedule-manager .frontend-structure-content {
+  grid-template-columns: auto minmax(0, 1fr);
+}
+
+.case-study--laviebel-schedule-manager .frontend-structure-image img {
+  max-width: 540px;
+}
+
+.case-study--laviebel-schedule-manager .frontend-structure-image {
+  width: 540px;
 }
 
 .frontend-structure-copy h2 {
@@ -1161,6 +1174,15 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
   }
 
   .frontend-structure-image img {
+    max-width: 360px;
+  }
+
+  .frontend-structure-image,
+  .case-study--laviebel-schedule-manager .frontend-structure-image {
+    width: 100%;
+  }
+
+  .case-study--laviebel-schedule-manager .frontend-structure-image img {
     max-width: 360px;
   }
 
