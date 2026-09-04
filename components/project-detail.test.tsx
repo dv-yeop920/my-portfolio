@@ -77,23 +77,57 @@ describe("ProjectDetail", () => {
     ).toHaveAttribute("href", "https://lavi-crew.vercel.app");
   });
 
-  it("shows Mingle as a planning-stage MVP case study", () => {
-    const project = getProjectBySlug("mingle-group-chemistry");
+  it("shows MIXTI as an AI and performance-focused MVP case study", () => {
+    const project = getProjectBySlug("mixti-group-chemistry");
     if (!project) throw new Error("Fixture project is required");
 
     render(<ProjectDetail project={project} />);
 
-    expect(screen.getByRole("heading", { name: "Mingle" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "MIXTI" })).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "프로젝트 개요" }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/OpenAI API/)).toBeInTheDocument();
-    expect(screen.queryByRole("heading", { name: "주요 작업" })).not.toBeInTheDocument();
     expect(
-      screen.queryByRole("heading", { name: "MVP 사용자 흐름" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("heading", { name: "주요 작업" }),
+    ).toBeInTheDocument();
     expect(
-      screen.queryByRole("heading", { name: "MVP 설계 방향" }),
-    ).not.toBeInTheDocument();
+      screen.getByRole("heading", { name: "MVP 사용자 흐름" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "홈 페이지" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: "MIXTI 서비스 아키텍처" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "FSD 기반 폴더 구조" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", {
+        name: "MIXTI FSD 기반 프론트엔드 폴더 구조",
+      }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "문제 해결" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "웹폰트와 LCP 병목 해결" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", {
+        name: "OpenAI Responses API 기반 스트리밍 분석",
+      }),
+    ).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "AI 활용 사례" })).toBeInTheDocument();
+    expect(screen.getAllByText("결과와 한계")).toHaveLength(5);
+    expect(screen.getAllByText(/OpenAI Responses API/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/GA4/).length).toBeGreaterThan(0);
+    expect(
+      screen.getByRole("heading", { name: "GA4 기반 사용자 흐름 개선" }),
+    ).toBeInTheDocument();
+    expect(screen.getByLabelText("폰트 네트워크 요청 이미지 추가 예정"))
+      .toBeInTheDocument();
+    expect(screen.getByLabelText("GA4 사용자 흐름 이미지 추가 예정"))
+      .toBeInTheDocument();
   });
 });

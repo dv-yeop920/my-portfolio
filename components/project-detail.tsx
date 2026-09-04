@@ -305,30 +305,63 @@ export function ProjectDetail({ project }: { project: Project }) {
           <div className="technical-details">
             {project.highlights.map((highlight, index) => (
               <article
+                className={highlight.evidence?.length ? "has-evidence" : undefined}
                 key={highlight.title}
                 data-reveal
                 data-reveal-delay={(index % 3) + 1}
               >
                 <h3>{highlight.title}</h3>
-                <div className="technical-decision">
-                  <div>
-                    <strong>{highlightLabels.problem}</strong>
-                    <p>
-                      <BoldText content={highlight.problem} />
-                    </p>
+                <div className="technical-highlight-content">
+                  <div className="technical-decision">
+                    <div>
+                      <strong>{highlightLabels.problem}</strong>
+                      <p>
+                        <BoldText content={highlight.problem} />
+                      </p>
+                    </div>
+                    <div>
+                      <strong>{highlightLabels.decision}</strong>
+                      <p>
+                        <BoldText content={highlight.decision} />
+                      </p>
+                    </div>
+                    <div>
+                      <strong>{highlightLabels.outcome}</strong>
+                      <p>
+                        <BoldText content={highlight.outcome} />
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <strong>{highlightLabels.decision}</strong>
-                    <p>
-                      <BoldText content={highlight.decision} />
-                    </p>
-                  </div>
-                  <div>
-                    <strong>{highlightLabels.outcome}</strong>
-                    <p>
-                      <BoldText content={highlight.outcome} />
-                    </p>
-                  </div>
+                  {highlight.evidence?.length ? (
+                    <div className="technical-evidence-list">
+                      {highlight.evidence.map(item => (
+                        <figure className="technical-evidence" key={item.title}>
+                          <div className="technical-evidence-media">
+                            {item.src ? (
+                              <Image
+                                src={item.src}
+                                alt={item.alt}
+                                fill
+                                sizes="(max-width: 820px) 100vw, 42vw"
+                              />
+                            ) : (
+                              <div
+                                className="technical-evidence-placeholder"
+                                aria-label={`${item.title} 이미지 추가 예정`}
+                              >
+                                <span>Measurement capture</span>
+                                <strong>이미지 추가 예정</strong>
+                              </div>
+                            )}
+                          </div>
+                          <figcaption>
+                            <strong>{item.title}</strong>
+                            <p>{item.description}</p>
+                          </figcaption>
+                        </figure>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </article>
             ))}

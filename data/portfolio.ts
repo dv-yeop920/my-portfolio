@@ -13,6 +13,7 @@ export type TechnicalHighlight = {
   problem: string;
   decision: string;
   outcome: string;
+  evidence?: ProjectEvidence[];
 };
 
 export type ProjectFlowStep = {
@@ -29,6 +30,13 @@ export type ProjectScreen = {
   description: string;
   image?: string;
   alt?: string;
+};
+
+export type ProjectEvidence = {
+  title: string;
+  description: string;
+  src?: string;
+  alt: string;
 };
 
 export type Project = {
@@ -103,7 +111,7 @@ export const portfolio = {
       {
         title: "AI 활용",
         description:
-          "AI에게 바로 코드를 맡기기보다 **프로젝트 규칙과 작업 범위를 먼저 정의**하고 조사 → 계획 → 구현 → 리뷰 과정을 나눠 활용합니다. AGENTS.md와 Agent 역할을 구성해 **결과를 검토할 수 있는 형태**로 AI를 개발 과정에 적용하고 있습니다.",
+          "MIXTI에서 **Harness Engineering 기반 AI 개발 환경**을 구성하고 조사 → 계획 → 승인 → 구현 → 리뷰 단계로 역할을 분리해 AI 기반 개발의 안정성과 검증 가능성을 확보하며 개발 및 운영하고 있습니다. **GA4 기준 활성 사용자 100명 이상**을 기록하고 있으며 GA4와 Vercel Speed Insights를 바탕으로 사용자 트래픽과 성능 병목을 측정하고 개선하며 사용자 경험을 높이고 있습니다.",
       },
       {
         title: "요구사항과 아키텍처",
@@ -683,22 +691,180 @@ export const portfolio = {
       ],
     },
     {
-      slug: "mingle-group-chemistry",
-      title: "Mingle",
+      slug: "mixti-group-chemistry",
+      title: "MIXTI",
       eyebrow: "2026.08 -",
       status: "진행 중",
       summary:
-        "여러 사람의 MBTI를 조합해 관계의 분위기와 역할 그리고 대화 흐름을 함께 살펴보는 그룹 케미 서비스입니다.",
+        "2~15명의 MBTI와 관계 유형을 바탕으로 그룹의 분위기와 역할 그리고 대화 흐름을 AI 리포트로 보여주는 모바일 웹 서비스입니다.",
       purpose:
-        "MBTI 콘텐츠는 보통 개인 성향이나 두 사람의 궁합을 보여 주는 데 머뭅니다. Mingle은 친구, 팀, 가족처럼 **여러 사람이 함께 있을 때 만들어지는 관계와 분위기**를 살펴보는 서비스로 기획하고 있습니다. 각 구성원의 MBTI를 조합해 누가 대화를 이끄는지 어떤 상황에서 팀워크가 좋아지는지 의견이 엇갈릴 수 있는 지점은 무엇인지 부담 없이 이야기할 수 있는 문장으로 보여 주려 합니다.\n\n그룹 유형을 선택하고 구성원을 추가한 뒤 분석 결과를 확인하는 흐름을 핵심으로 잡고 있습니다. 결과에는 전체 케미 점수뿐 아니라 그룹 분위기, 구성원 역할, 대화 포인트, 갈등 주의점, 가장 잘 어울리는 순간을 담아 단순한 점수 확인에서 끝나지 않고 함께 대화할 수 있도록 설계하려 합니다. **OpenAI API**는 이 결과를 그룹 맥락에 맞는 리포트로 만들기 위한 핵심 기능으로 검토하고 있습니다.\n\n현재 서비스 기획과 모바일 UI 디자인을 진행하고 있습니다. 첫 단계에서는 설치 부담이 없는 웹 MVP로 실제 사용 흐름을 검증하려 합니다. 그룹 생성 완료율, 결과 저장과 공유 행동, 재방문 여부를 살펴보고 사용자가 다시 찾는 기능을 확인한 뒤 **React Native**를 학습해 네이티브 앱으로 확장할 계획입니다. 웹에서 검증한 결과를 기반으로 앱에서는 푸시 알림과 저장된 그룹 관리 그리고 공유 경험을 더 자연스럽게 발전시키고 싶습니다.",
+        "MBTI 콘텐츠는 대부분 개인 성향이나 두 사람의 궁합을 보여줍니다. 저는 여러 사람이 모였을 때 생기는 분위기와 관계도 재미있게 알아볼 수 있으면 좋겠다는 생각으로 MIXTI를 만들었습니다.\n\n친구 / 팀 / 가족 중 관계를 선택하고 2~15명의 MBTI를 입력하면 **그룹의 전체 분위기와 각자의 역할 그리고 1:1 케미**를 AI 리포트로 보여줍니다. 로그인한 사용자는 결과를 저장해 나중에 다시 볼 수 있습니다.",
       team: "1인 개인 프로젝트",
-      contribution: "서비스 기획 / UX 설계 / UI 디자인",
-      overviewOnly: true,
-      role: [],
-      stack: [],
-      highlights: [],
-      retrospective: "",
-      flow: [],
+      contribution: "기획 / 프론트엔드 / AI 및 데이터 연동 / 성능 개선",
+      role: [
+        "웹폰트 중복 요청 원인 추적, 고정 URL과 캐시 전략 적용으로 **LCP 병목 개선**",
+        "Hero와 분석 진행 UI의 렌더링 및 애니메이션 비용 절감으로 **INP 개선**",
+        "Prompt와 logging hook 기반 Agent 실행 추적, **plan-first-workflow와 human approval gate 적용**",
+        "**OpenAI Responses API와 Zod Structured Outputs** 기반 SSE 스트리밍 및 입력·결과 검증 구현",
+        "Vercel Speed Insights와 **GA4 연동으로 실제 성능과 사용자 흐름 확인 및 개선**",
+      ],
+      architecture: {
+        src: "/projects/mixti/architecture.png",
+        alt: "MIXTI 서비스 아키텍처",
+        width: 1536,
+        height: 1024,
+      },
+      structure: {
+        title: "FSD 기반 폴더 구조",
+        src: "/projects/mixti/folder.png",
+        alt: "MIXTI FSD 기반 프론트엔드 폴더 구조",
+        width: 1086,
+        height: 1448,
+        description:
+          "라우팅과 API 진입점은 app에 두고 화면 조합부터 공통 기능까지 **FSD의 책임 단위로 나눴습니다.** AI 응답 형식이나 인증 흐름이 바뀌어도 화면 전체를 수정하지 않도록 사용자 행동과 비즈니스 데이터 그리고 공통 기능의 경계를 분리했습니다.",
+        points: [
+          "**app**: 홈 / 마이페이지 / 히스토리 / 테스트 흐름의 route와 layout 그리고 분석 Route Handler를 관리합니다.",
+          "**views**: 홈과 분석 결과처럼 여러 하위 기능을 조합하는 페이지 단위 화면입니다.",
+          "**widgets**: bottom navigation과 step header처럼 여러 요소가 결합된 큰 UI 영역입니다.",
+          "**features**: 그룹과 멤버 입력 / 세션 관리 / 분석 결과 저장과 공유처럼 사용자 행동 단위의 로직과 UI를 관리합니다.",
+          "**entities**: 분석 결과 schema와 요약 카드 / MBTI 상수와 선택 UI처럼 비즈니스 데이터를 표현합니다.",
+          "**shared**: 공통 UI / Supabase client / query key / 데이터 정규화 / 세션 보존 같은 기반 코드를 관리합니다.",
+        ],
+      },
+      stack: [
+        "Next.js(App Router)",
+        "TypeScript",
+        "React Query",
+        "Zustand",
+        "Supabase",
+        "OpenAI Responses API",
+        "Zod",
+        "Vercel Speed Insights",
+        "GA4",
+      ],
+      highlightsEyebrow: "Performance & Reliability",
+      highlightsTitle: "문제 해결",
+      highlightLabels: {
+        problem: "상황과 관측",
+        decision: "선택과 검증",
+        outcome: "결과와 한계",
+      },
+      highlights: [
+        {
+          title: "웹폰트와 LCP 병목 해결",
+          problem:
+            "모바일 첫 화면에서 Gothic A1 TTF의 용량이 큰 부담이 됐습니다. WOFF2로 바꾼 뒤에도 폰트가 두 번 내려받아지는 문제가 남았습니다. 네트워크 요청을 따라가 보니 CSS와 preload에 서로 다른 Vercel 배포 해시가 붙어 같은 폰트 약 994KB를 다른 파일로 인식하고 있었습니다.",
+          decision:
+            "TTF를 WOFF2로 바꾸고 사용하지 않는 weight를 제거했습니다. 이후 next/font/local 대신 **/fonts/v1/ 고정 URL과 immutable cache**를 적용해 CSS와 preload가 같은 주소를 사용하도록 바꿨습니다. Gothic A1은 700 / 900 weight만 preload했습니다. optional 정책과 preload 제거도 시도했지만 중복 요청의 원인을 해결하지 못하거나 실제 브라우저에서 폰트를 늦게 보여주는 문제가 있어 채택하지 않았습니다.",
+          outcome:
+            "2026년 9월 2일 프로덕션에서 폰트 5개가 **총 987.2KB로 각각 한 번씩만 요청되는 것**을 확인했습니다. ?dpl= 주소와 /_next/static/media 요청도 모두 사라졌습니다. 같은 배포에서 Lighthouse devtools mobile LCP는 2.3초였습니다. 대신 폰트 파일이 바뀔 때마다 버전 경로를 직접 관리해야 하는 책임이 생겼습니다.",
+          evidence: [
+            {
+              title: "폰트 네트워크 요청",
+              description:
+                "프로덕션에서 폰트 요청 수와 전송량 그리고 배포 해시가 붙은 요청이 사라졌는지 확인한 자료입니다.",
+              alt: "MIXTI 프로덕션 폰트 네트워크 측정 결과",
+            },
+            {
+              title: "Lighthouse mobile 측정",
+              description:
+                "같은 배포를 실제 Chrome 환경에서 측정한 Lighthouse mobile 결과와 LCP 요소를 보여주는 자료입니다.",
+              alt: "MIXTI Lighthouse mobile 성능 측정 결과",
+            },
+          ],
+        },
+        {
+          title: "OpenAI Responses API 기반 스트리밍 분석",
+          problem:
+            "AI 분석은 응답을 기다리는 동안 사용자가 현재 상태를 알기 어렵고, Structured Outputs를 사용해도 특정 구성원이나 1:1 pair가 빠지거나 중복되는 문제까지 막아주지는 않았습니다.",
+          decision:
+            "**OpenAI Responses API와 Zod Structured Outputs**를 활용해 정해진 schema의 결과를 SSE로 스트리밍하도록 설계했습니다. Route Handler에서 입력값을 먼저 검증하고, 응답 후에는 예상한 memberId와 pairId를 비교해 누락이나 중복을 차단했습니다.",
+          outcome:
+            "분석 진행 상태와 오류를 스트리밍으로 안내하고, 입력 검증 실패·결과 누락·quota 부족·rate limit을 구분해 처리했습니다. 최대 입력을 **15명 / 105 pair**로 제한해 분석 결과의 규모도 관리했습니다.",
+        },
+        {
+          title: "INP와 애니메이션 실행 비용",
+          problem:
+            "첫 화면에서 사용자가 버튼을 누를 때 넓은 client tree와 명령형 navigation 그리고 전역 session 구독이 한꺼번에 동작하고 있었습니다. bottom sheet 애니메이션도 JavaScript timing에 의존했고 분석 진행률의 width 변경은 매번 layout 계산을 만들 수 있었습니다.",
+          decision:
+            "Hero CTA는 Link로 바꾸고 정적인 영역은 Server Component로 유지했습니다. session manager는 필요한 route layout에서만 동작하게 줄였습니다. bottom sheet 진입 애니메이션은 CSS @starting-style로 옮겼습니다. 진행률은 width 대신 **transform: scaleX()**로 바꾸고 SSE progress event는 3% 이상 변하거나 500ms가 지났을 때만 갱신하도록 제한했습니다.",
+          outcome:
+            "2026년 8월 31일 Vercel Speed Insights에서 INP P75 64ms를 확인했습니다. 별도로 확인한 2일 평균 P75 45ms는 표본이 16건뿐이고 집계 조건도 달랐습니다. 그래서 두 수치를 전후 개선 결과로 연결하지 않았습니다. 정확한 판단을 위해서는 더 많은 표본이 필요합니다.",
+          evidence: [
+            {
+              title: "Vercel Speed Insights",
+              description:
+                "실제 사용자 환경에서 수집한 LCP와 INP를 표본 수와 집계 기간과 함께 확인한 자료입니다.",
+              alt: "MIXTI Vercel Speed Insights 측정 결과",
+            },
+          ],
+        },
+        {
+          title: "AI 활용 사례",
+          problem:
+            "AI 코드 생성과 Agent 실행을 그대로 의존하면 작업 범위가 이탈하거나 어떤 입력과 도구 호출에서 문제가 발생했는지 다시 확인하기 어려웠습니다.",
+          decision:
+            "Prompt와 logging hook을 구축해 Agent 실행의 입력, 도구 호출, 결과를 추적하고 동일 조건 재현과 오류 원인 분석이 가능한 디버깅 환경을 구성했습니다. AI 코드 생성에는 **plan-first-workflow와 human approval gate**를 적용해 구현 전에 작업 범위와 변경 리스크를 검토하도록 했습니다.",
+          outcome:
+            "조사 → 계획 → 승인 → 구현 → 리뷰 단계를 분리해 AI가 프로젝트 의도에서 벗어나는 것을 줄이고, 실행 기록을 바탕으로 문제를 재현하고 원인을 분석할 수 있는 개발 환경을 만들었습니다.",
+        },
+        {
+          title: "GA4 기반 사용자 흐름 개선",
+          problem:
+            "서비스를 배포한 뒤에는 어떤 경로로 사용자가 들어오고 어느 화면까지 이동하는지 실제 데이터를 기준으로 확인할 필요가 있었습니다. 개발 환경에서 기능이 잘 동작하는 것만으로는 사용자가 분석 결과까지 도달하는 과정을 알기 어려웠습니다.",
+          decision:
+            "GA4를 연결해 사용자 유입과 페이지 이동을 확인했습니다. 성능 문제는 Vercel Speed Insights와 함께 비교하며 사용자가 많이 방문하는 화면부터 개선할 수 있도록 운영 기준을 만들었습니다.",
+          outcome:
+            "GA4 기준 **활성 사용자 100명 이상**을 기록했습니다. 현재도 사용자 트래픽과 성능 병목을 함께 확인하며 실제 사용 흐름을 기준으로 개선하고 있습니다.",
+          evidence: [
+            {
+              title: "GA4 사용자 흐름",
+              description:
+                "활성 사용자와 유입 경로 그리고 페이지 이동을 확인한 GA4 자료입니다.",
+              alt: "MIXTI GA4 활성 사용자와 사용자 흐름 데이터",
+            },
+          ],
+        },
+      ],
+      retrospective:
+        "MIXTI를 만들면서 AI가 정해진 schema로 답했다고 해서 서비스에서 바로 사용할 수 있는 결과가 되는 것은 아니라는 점을 배웠습니다. 모든 구성원과 pair가 들어왔는지 다시 확인해야 했고 입력 검증 / 결과 검증 / 저장 변환 / 화면용 데이터 정리를 각각의 역할로 나눠야 했습니다. 이 과정을 거치면서 AI 기능도 일반적인 서비스 로직처럼 실패하는 지점을 먼저 정하고 다뤄야 한다는 기준을 세웠습니다.\n\n성능도 Lighthouse 점수 하나로 설명할 수 없었습니다. 같은 코드라도 측정 방식과 cache 상태에 따라 결과가 달랐습니다. 그래서 숫자만 비교하기보다 실제 네트워크 요청과 LCP 요소 그리고 사용자 환경의 RUM을 함께 확인했습니다. 예상과 다르게 dynamic import가 초기 전송량을 줄이지 못했을 때는 가설을 고집하지 않고 목표를 interaction 전 mount 비용을 줄이는 방향으로 바꿨습니다. 확인한 사실과 아직 확인하지 못한 부분을 구분해서 설명하는 습관도 갖게 됐습니다.",
+      flowTitle: "MVP 사용자 흐름",
+      flow: [
+        {
+          title: "홈 페이지",
+          description: "서비스 소개 / 그룹 케미 분석 시작 CTA",
+          solution:
+            "첫 화면에서 서비스의 핵심 가치를 바로 이해하고 분석을 시작할 수 있도록 소개 문구와 CTA에 시선을 집중했습니다. 정적인 영역은 Server Component로 유지하고 CTA는 Link로 구성해 관계 유형 선택 단계로 빠르게 이동하도록 했습니다.",
+        },
+        {
+          title: "관계 유형과 구성원 입력",
+          description:
+            "친구 / 팀 / 가족 중 관계 유형을 고르고 2~15명의 nickname과 MBTI를 입력합니다.",
+          solution:
+            "관계 맥락과 본인 여부를 분석에 포함합니다. 구성원 수 / nickname과 ID 중복 / order / isSelf 조건은 OpenAI를 호출하기 전에 확인합니다.",
+        },
+        {
+          title: "AI 분석 요청",
+          description:
+            "검증된 그룹 데이터를 OpenAI Responses API에 전송하고 SSE로 결과를 받습니다.",
+          solution:
+            "정적 instructions와 동적 JSON input을 분리하고 Structured Outputs로 응답 형식을 제한했습니다. 결정론적으로 계산할 수 있는 집계와 예상 pair는 서버에서 처리합니다.",
+        },
+        {
+          title: "분석 진행 상태",
+          description:
+            "AI 응답을 기다리는 동안 스트리밍 진행 상태와 오류 안내를 표시합니다.",
+          solution:
+            "진행률은 scaleX 애니메이션으로 보여주고 SSE event가 지나치게 자주 화면을 갱신하지 않도록 제한했습니다. quota 부족과 일시적인 rate limit도 구분해서 안내했습니다. 화면의 진행률은 모델의 실제 처리량이 아니라 수신한 데이터 양을 바탕으로 계산한 예상치입니다.",
+        },
+        {
+          title: "완전성 검증과 결과 표시",
+          description:
+            "전체 분위기와 구성원 역할 그리고 1:1 케미가 담긴 분석 리포트를 확인합니다.",
+          solution:
+            "서버가 예상한 memberId와 pairId를 실제 결과와 비교해 빠지거나 중복된 항목을 차단합니다. 이전 응답과 현재 응답은 하나의 view model로 정리해 로그인 결과와 게스트 결과가 같은 UI를 사용하도록 만들었습니다.",
+        },
+      ],
       screens: [],
       links: [],
     },

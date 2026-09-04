@@ -5,7 +5,7 @@ import { SectionHeading } from "./section-heading";
 const cardOrder: Record<string, number> = {
   "web-product-platform": 1,
   "laviebel-schedule-manager": 2,
-  "mingle-group-chemistry": 3,
+  "mixti-group-chemistry": 3,
 };
 
 export function ProjectsSection() {
