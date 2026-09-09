@@ -815,7 +815,7 @@ export const portfolio = {
           implementation:
             "PPR과 Suspense Streaming으로 정적 영역을 먼저 보여주고 사용자 데이터 영역만 나눠 렌더링했습니다.",
           outcome:
-            "동일한 Lighthouse Mobile 조건에서 성능 점수는 68에서 88로, LCP는 5.0초에서 3.9초로 개선됐습니다. 한글 웹폰트는 11.4MB에서 1.04MB로 줄었고 Vercel Speed Insights의 P75 LCP 평균은 1.5초 이하로 유지하고 있습니다.",
+            "동일한 Lighthouse Mobile 조건에서 성능 점수는 68에서 88로, LCP는 5.0초에서 3.9초로 개선됐습니다. 한글 웹폰트는 11.4MB에서 1.04MB로 줄었고 집계 기간 기준 Vercel Speed Insights의 P75 LCP 평균은 1.5초 이하로 유지됐습니다.",
           beforeAfter: {
             before: {
               title: "Before",
