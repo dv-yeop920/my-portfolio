@@ -85,22 +85,34 @@ describe("ProjectDetail", () => {
 
     expect(screen.getByRole("heading", { name: "MIXTI" })).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "프로젝트 개요" }),
+      screen.getByRole("link", { name: "서비스 바로가기" }),
+    ).toHaveAttribute("href", "https://mixti.io/");
+    expect(
+      screen.getByRole("heading", { name: "01. 서비스 아키텍처" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "주요 작업" }),
+      screen.getByRole("heading", { name: "02. 폴더 구조" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "MVP 사용자 흐름" }),
+      screen.getByRole("heading", { name: "03. AI 분석 아키텍처" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "홈 페이지" }),
+      screen.getByRole("heading", { name: "04. AI 에이전트 활용" }),
     ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "05. Performance Optimization" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "06. 운영 및 모니터링" }),
+    ).toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "배포 환경" }),
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("heading", { name: "프로젝트 이미지" }),
+    ).not.toBeInTheDocument();
     expect(
       screen.getByRole("img", { name: "MIXTI 서비스 아키텍처" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "FSD 기반 폴더 구조" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("img", {
@@ -108,25 +120,25 @@ describe("ProjectDetail", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "문제 해결" }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("heading", { name: "웹폰트와 LCP 병목 해결" }),
+      screen.getByRole("heading", { name: "웹폰트와 FCP/LCP 병목 해결" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
-        name: "OpenAI Responses API 기반 스트리밍 분석",
+        name: "03. AI 분석 아키텍처",
       }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "AI 활용 사례" })).toBeInTheDocument();
-    expect(screen.getAllByText("결과와 한계")).toHaveLength(5);
+    expect(
+      screen.getByRole("heading", { name: "04. AI 에이전트 활용" }),
+    ).toBeInTheDocument();
+    expect(screen.getAllByText("Result")).toHaveLength(5);
+    expect(screen.getAllByText("Implementation")).toHaveLength(5);
     expect(screen.getAllByText(/OpenAI Responses API/).length).toBeGreaterThan(0);
     expect(screen.getAllByText(/GA4/).length).toBeGreaterThan(0);
     expect(
-      screen.getByRole("heading", { name: "GA4 기반 사용자 흐름 개선" }),
+      screen.getByRole("heading", { name: "06. 운영 및 모니터링" }),
     ).toBeInTheDocument();
-    expect(screen.getByLabelText("폰트 네트워크 요청 이미지 추가 예정"))
-      .toBeInTheDocument();
+    expect(screen.queryByLabelText("폰트 네트워크 요청 이미지 추가 예정"))
+      .not.toBeInTheDocument();
     expect(screen.getByLabelText("GA4 사용자 흐름 이미지 추가 예정"))
       .toBeInTheDocument();
   });

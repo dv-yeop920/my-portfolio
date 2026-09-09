@@ -28,9 +28,9 @@ describe("portfolio project content", () => {
     ]);
     expect(scheduleManager?.flow).toHaveLength(11);
     expect(scheduleManager?.nextPlan?.title).toBe("Next");
-    expect(mixti?.status).toBe("진행 중");
+    expect(mixti?.status).toBe("운영 중");
     expect(mixti?.overviewOnly).not.toBe(true);
-    expect(mixti?.flow).toHaveLength(5);
+    expect(mixti?.flow).toHaveLength(4);
     expect(mixti?.flow[0]?.title).toBe("홈 페이지");
     expect(mixti?.highlights).toHaveLength(5);
     expect(mixti?.stack).toEqual(
@@ -43,22 +43,34 @@ describe("portfolio project content", () => {
       ]),
     );
     expect(mixti?.architecture?.alt).toBe("MIXTI 서비스 아키텍처");
+    expect(mixti?.architectureStory?.implementation).toContain("OpenAI Responses API");
     expect(mixti?.structure?.title).toBe("FSD 기반 폴더 구조");
+    expect(mixti?.structureStory?.result).toContain("변경할 수");
     expect(mixti?.purpose).not.toContain("GA4");
     expect(mixti?.highlights.some((highlight) => highlight.title.includes("GA4")))
       .toBe(true);
+    expect(mixti?.highlights.every((highlight) => highlight.implementation)).toBe(true);
     expect(mixti?.highlights.flatMap((highlight) => highlight.evidence ?? []))
-      .toHaveLength(4);
+      .toHaveLength(1);
     expect(
       mixti?.highlights.flatMap((highlight) =>
         (highlight.evidence ?? []).map((item) => item.title),
       ),
-    ).toEqual([
-      "폰트 네트워크 요청",
-      "Lighthouse mobile 측정",
-      "Vercel Speed Insights",
-      "GA4 사용자 흐름",
-    ]);
+    ).toEqual(["GA4 사용자 흐름"]);
+    expect(mixti?.highlights.find((highlight) => highlight.title.includes("웹폰트"))?.beforeAfter)
+      .toEqual(
+        expect.objectContaining({
+          before: expect.objectContaining({ title: "Before" }),
+          after: expect.objectContaining({ title: "After" }),
+        }),
+      );
+    expect(mixti?.highlights.find((highlight) => highlight.title.includes("INP"))?.beforeAfter)
+      .toEqual(
+        expect.objectContaining({
+          before: expect.objectContaining({ title: "Before" }),
+          after: expect.objectContaining({ title: "After" }),
+        }),
+      );
   });
 
   it("returns undefined for a project slug that does not exist", () => {

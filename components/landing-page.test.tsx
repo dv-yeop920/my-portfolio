@@ -87,7 +87,7 @@ describe("HomePage", () => {
       "href",
       "/projects/mixti-group-chemistry",
     );
-    expect(screen.getByText("진행 중")).toBeInTheDocument();
+    expect(screen.getByText("운영 중")).toBeInTheDocument();
     expect(screen.queryByText("개발 완료")).not.toBeInTheDocument();
     expect(screen.queryByText("개발 및 운영 중")).not.toBeInTheDocument();
   });

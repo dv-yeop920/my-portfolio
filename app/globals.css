@@ -673,6 +673,239 @@ h3 {
   grid-template-columns: minmax(0, 1fr);
 }
 
+.case-study--structured {
+  padding-bottom: 1px;
+}
+
+.case-chapter {
+  margin-bottom: 28px;
+  padding: clamp(28px, 5vw, 56px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.case-chapter-heading {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.case-chapter-heading h2 {
+  display: block;
+  width: 100%;
+  white-space: normal;
+}
+
+.chapter-image {
+  margin-top: 28px;
+  padding: 18px;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.chapter-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.architecture-explanation {
+  margin-top: 30px;
+}
+
+.architecture-explanation > p {
+  max-width: 900px;
+  margin-bottom: 28px;
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.architecture-technology-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.architecture-technology-list article {
+  padding: 18px;
+  border-top: 2px solid var(--accent);
+  background: #ffffff;
+}
+
+.architecture-technology-list h3 {
+  margin-bottom: 10px;
+  font-size: 1.08rem;
+}
+
+.architecture-technology-list p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.chapter-structure {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.62fr) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+  margin-top: 28px;
+}
+
+.chapter-structure > img {
+  display: block;
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.chapter-structure h3 {
+  margin-bottom: 14px;
+}
+
+.chapter-structure ul {
+  margin: 0 0 20px;
+  padding-left: 20px;
+}
+
+.chapter-structure li + li {
+  margin-top: 8px;
+}
+
+.chapter-structure p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.chapter-structure li {
+  font-size: 0.98rem;
+  line-height: 1.75;
+}
+
+.chapter-structure-copy {
+  min-width: 0;
+}
+
+.chapter-structure-copy > p {
+  margin-bottom: 22px;
+}
+
+.chapter-structure-copy > p:last-child {
+  margin-top: 22px;
+}
+
+.request-flow-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.request-flow-diagram li {
+  position: relative;
+  flex: 1 1 150px;
+  min-height: 84px;
+  padding: 16px;
+  border: 1px solid #cce8e4;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.request-flow-diagram li:not(:last-child)::after {
+  position: absolute;
+  top: 50%;
+  right: -15px;
+  color: #0f9f91;
+  content: "→";
+  transform: translateY(-50%);
+}
+
+.request-flow-diagram span,
+.request-flow-diagram strong {
+  display: block;
+}
+
+.request-flow-diagram span {
+  margin-bottom: 12px;
+  color: #0f766e;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.request-flow-diagram strong {
+  font-size: 0.96rem;
+  line-height: 1.4;
+}
+
+.prompt-layers {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.prompt-layers div {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-left: 3px solid var(--accent);
+  background: #ffffff;
+}
+
+.prompt-layers strong {
+  font-size: 0.96rem;
+}
+
+.prompt-layers span {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.case-subchapter-grid {
+  display: grid;
+  gap: 28px;
+}
+
+.case-subchapter {
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.case-subchapter:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.case-subchapter h3 {
+  margin-bottom: 18px;
+  font-size: 1.28rem;
+}
+
+.case-subchapter .technical-evidence-list {
+  margin-top: 26px;
+}
+
+.technical-evidence-comparison {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.case-subchapter--monitoring .decision-story-grid {
+  margin-top: 0;
+}
+
 .case-grid article,
 .decision-grid article {
   padding: 34px;
@@ -715,6 +948,53 @@ h3 {
   margin: 0 auto;
   border: 1px solid var(--line);
   border-radius: 12px;
+}
+
+.decision-story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 10px;
+  row-gap: 24px;
+  margin-top: 32px;
+}
+
+.decision-story-item {
+  --story-accent: #d97706;
+  padding: 16px;
+  border-left: 3px solid var(--story-accent);
+  border-radius: 0;
+  background: transparent;
+}
+
+.decision-story-item:nth-child(2) {
+  --story-accent: #7c3aed;
+}
+
+.decision-story-item:nth-child(3) {
+  --story-accent: #0284c7;
+}
+
+.decision-story-item:nth-child(4) {
+  --story-accent: #16a34a;
+}
+
+.decision-story-item > strong,
+.decision-story-item > p {
+  display: block;
+}
+
+.decision-story-item > strong {
+  margin-bottom: 5px;
+  color: var(--story-accent);
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+}
+
+.decision-story-item > p {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.75;
 }
 
 .frontend-structure {
@@ -1111,13 +1391,14 @@ h3 {
   display: block;
   margin-bottom: 6px;
   color: var(--ink);
-  font-size: 0.94rem;
+  font-size: 1rem;
 }
 
 .technical-evidence figcaption p {
   margin-bottom: 0;
   color: var(--ink-soft);
-  font-size: 0.88rem;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .retrospective {
@@ -1284,7 +1565,12 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
   .highlight-grid,
   .technical-details,
   .project-gallery,
-  .frontend-structure-content {
+  .decision-story-grid,
+  .frontend-structure-content,
+  .chapter-structure,
+  .prompt-layers,
+  .architecture-technology-list,
+  .technical-evidence-comparison {
     grid-template-columns: 1fr;
   }
 
@@ -1298,6 +1584,18 @@ html[data-motion-ready="true"] :where([data-reveal].is-visible) {
 
   .frontend-structure {
     padding: 26px;
+  }
+
+  .case-chapter {
+    padding: 26px;
+  }
+
+  .request-flow-diagram li:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
   }
 
   .frontend-structure-image img {
