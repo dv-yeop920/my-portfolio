@@ -30,6 +30,7 @@ describe("portfolio project content", () => {
     expect(scheduleManager?.nextPlan?.title).toBe("Next");
     expect(mixti?.status).toBe("운영 중");
     expect(mixti?.overviewOnly).not.toBe(true);
+    expect(mixti?.summary).toContain("1:1 케미");
     expect(mixti?.flow).toHaveLength(4);
     expect(mixti?.flow[0]?.title).toBe("홈 페이지");
     expect(mixti?.highlights).toHaveLength(5);
@@ -43,6 +44,7 @@ describe("portfolio project content", () => {
       ]),
     );
     expect(mixti?.architecture?.alt).toBe("MIXTI 서비스 아키텍처");
+    expect(mixti?.architectureDescription).toContain("게스트 결과");
     expect(mixti?.architectureStory?.implementation).toContain("OpenAI 분석");
     expect(mixti?.architectureStory?.result).toContain("같은 화면");
     expect(mixti?.structure?.title).toBe("FSD 기반 폴더 구조");
