@@ -719,10 +719,10 @@ export const portfolio = {
       team: "1인 개인 프로젝트",
       contribution: "기획 / 프론트엔드 / AI 및 데이터 연동 / 성능 개선",
       role: [
-        "웹폰트와 초기 렌더링 구조를 개선해 **LCP 병목 해결**",
-        "**OpenAI Responses API와 Zod Structured Outputs** 기반 SSE 스트리밍 및 입력·결과 검증 구현",
-        "Prompt와 logging hook 기반 Agent 실행 추적, **plan-first-workflow와 human approval gate 적용**",
-        "Vercel Speed Insights와 **GA4로 실제 성능과 사용자 흐름 확인**",
+        "한글 웹폰트를 **11.4MB에서 1.04MB로 경량화**하고 PPR / Suspense Streaming을 적용해 초기 렌더링 병목 개선",
+        "**OpenAI Streaming과 SSE 기반 진행 상태 전달**을 구현하고 화면 이탈 시 stream을 중단하도록 요청 생명주기 관리",
+        "Agent의 비의도적인 코드 수정을 줄이기 위해 **조사 → 계획 → 승인 → 구현 → 리뷰 절차** 적용",
+        "**Prompt와 logging hook**으로 Agent 실행의 입력, 도구 호출, 결과를 추적하는 디버깅 환경 구성",
       ],
       architecture: {
         src: "/projects/mixti/architecture.png",
@@ -813,9 +813,9 @@ export const portfolio = {
           decision:
             "공개 콘텐츠와 회원 전용 콘텐츠를 나누고 프로필과 최근 분석만 Suspense로 격리했습니다. 폰트는 WOFF2와 서브셋을 적용하고 URL과 preload 정책을 정리했습니다.",
           implementation:
-            "PPR과 Streaming SSR로 정적 영역을 먼저 보여줬습니다. Splash 표시와 fade 시간을 줄이고 도메인을 통일했으며 GTM에는 preconnect를 적용했습니다.",
+            "PPR과 Suspense Streaming으로 정적 영역을 먼저 보여주고 사용자 데이터 영역만 나눠 렌더링했습니다.",
           outcome:
-            "초기 화면 렌더링 측정에서 Lighthouse Score는 68에서 97로, FCP는 3.9초에서 1.7초로, LCP는 5.0초에서 1.7초로, TBT는 190ms에서 60ms로 측정됐습니다. 별도 폰트 측정에서는 리소스가 11.4MB에서 1.04MB로 줄고 중복 요청은 약 994KB에서 0KB가 됐습니다. 프로덕션 폰트 측정의 Lighthouse Score는 48에서 94로, LCP는 14.4초에서 1.7초로 측정됐습니다. 이 LCP 변화에는 폰트 변환뿐 아니라 중복 요청 제거와 font-display 변경도 함께 반영됐습니다. Splash 차단 시간은 2.5초에서 1.55초로 줄었습니다.",
+            "동일한 Lighthouse Mobile 조건에서 성능 점수는 68에서 88로, LCP는 5.0초에서 3.9초로 개선됐습니다. 한글 웹폰트는 11.4MB에서 1.04MB로 줄었고 Vercel Speed Insights의 P75 LCP 평균은 1.5초 이하로 유지하고 있습니다.",
           beforeAfter: {
             before: {
               title: "Before",
@@ -847,20 +847,20 @@ export const portfolio = {
           decision:
             "**OpenAI Responses API와 zodTextFormat()**으로 정해진 형식의 결과를 받고, memberId와 pairId로 모든 결과가 들어왔는지 다시 확인했습니다.",
           implementation:
-            "입력을 먼저 확인하고 정적 instructions와 동적 input을 나눠 OpenAI에 전달했습니다. responses.stream()으로 진행 상태를 보내고 quota, rate limit, 요청 취소를 구분해 처리했습니다.",
+            "입력을 확인한 뒤 정적 instructions와 동적 input을 나눠 OpenAI에 전달했습니다. Streaming 응답은 SSE로 진행 상태를 보내며 화면을 떠나면 stream을 중단합니다.",
           outcome:
-            "진행 상태와 오류를 보여주고, 결과가 완성되지 않으면 화면에 보내지 않게 됐습니다. 최대 15명에서 pair는 105개이며 평균 응답 시간과 실제 비용은 아직 측정하지 않았습니다.",
+            "사용자는 분석이 진행 중인지 확인할 수 있고 화면을 떠난 요청은 계속 유지되지 않습니다. 평균 응답 시간과 실제 비용은 아직 측정하지 않았습니다.",
         },
         {
           title: "Prompt 설계와 Agent 실행 추적",
           problem:
             "AI Agent를 그대로 사용하면 작업 범위를 벗어나거나 실패 원인을 다시 확인하기 어려웠습니다.",
           decision:
-            "Prompt를 역할 / 입력 / 제약 / 결과 형식으로 나누고 개발 Agent에는 logging hook과 **plan-first-workflow, human approval gate**를 적용했습니다.",
+            "Prompt를 역할 / 입력 / 제약 / 결과 형식으로 나누고 Agent에는 **조사 → 계획 → 승인 → 구현 → 리뷰 절차**를 적용했습니다.",
           implementation:
-            "분석 결과 형식을 고정하고 Agent 작업을 조사 → 계획 → 승인 → 구현 → 리뷰 순서로 진행하며 실행 기록을 남겼습니다.",
+            "Prompt와 logging hook으로 Agent 실행의 입력, 도구 호출, 결과를 기록해 구현 전 변경 내용을 검토할 수 있게 했습니다.",
           outcome:
-            "결과 형식과 작업 범위를 확인할 기준을 만들었습니다. Prompt token과 latency의 전후 수치는 아직 측정하지 않았습니다.",
+            "비의도적인 코드 수정을 줄이고 동일 조건 재현과 오류 원인 분석이 가능한 디버깅 환경을 구성했습니다.",
         },
         {
           title: "GA4 기반 사용자 흐름 개선",
