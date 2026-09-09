@@ -815,7 +815,7 @@ export const portfolio = {
           implementation:
             "PPR과 Streaming SSR로 정적 영역을 먼저 보여줬습니다. Splash 표시와 fade 시간을 줄이고 도메인을 통일했으며 GTM에는 preconnect를 적용했습니다.",
           outcome:
-            "Lighthouse Score는 68에서 97로, FCP는 3.9초에서 1.7초로, LCP는 5.0초에서 1.7초로, TBT는 190ms에서 60ms로 측정됐습니다. 폰트는 11.4MB에서 1.04MB로 줄었고 Splash 차단 시간은 2.5초에서 1.55초가 됐습니다. 프로덕션 LCP 14.4초에서 1.7초는 폰트 변환과 중복 요청 제거 그리고 font-display 변경이 함께 반영된 결과입니다.",
+            "초기 화면 렌더링 측정에서 Lighthouse Score는 68에서 97로, FCP는 3.9초에서 1.7초로, LCP는 5.0초에서 1.7초로, TBT는 190ms에서 60ms로 측정됐습니다. 별도 폰트 측정에서는 리소스가 11.4MB에서 1.04MB로 줄고 중복 요청은 약 994KB에서 0KB가 됐습니다. 프로덕션 폰트 측정의 Lighthouse Score는 48에서 94로, LCP는 14.4초에서 1.7초로 측정됐습니다. 이 LCP 변화에는 폰트 변환뿐 아니라 중복 요청 제거와 font-display 변경도 함께 반영됐습니다. Splash 차단 시간은 2.5초에서 1.55초로 줄었습니다.",
           beforeAfter: {
             before: {
               title: "Before",
