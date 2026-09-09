@@ -96,11 +96,18 @@ describe("ProjectDetail", () => {
     expect(
       screen.getByRole("heading", { name: "03. AI 분석 아키텍처" }),
     ).toBeInTheDocument();
+    expect(screen.getByText("Next.js Route Handler")).toBeInTheDocument();
+    expect(
+      screen.getByText("memberId / pairId 검증"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText("Supabase 저장"),
+    ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "04. AI 에이전트 활용" }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "05. Performance Optimization" }),
+      screen.getByRole("heading", { name: "05. 성능 최적화" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "06. 운영 및 모니터링" }),
@@ -120,7 +127,7 @@ describe("ProjectDetail", () => {
       }),
     ).toBeInTheDocument();
     expect(
-      screen.getByRole("heading", { name: "웹폰트와 FCP/LCP 병목 해결" }),
+      screen.getByRole("heading", { name: "초기 화면 렌더링 지연 해결" }),
     ).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {
@@ -137,9 +144,8 @@ describe("ProjectDetail", () => {
     expect(
       screen.getByRole("heading", { name: "06. 운영 및 모니터링" }),
     ).toBeInTheDocument();
-    expect(screen.queryByLabelText("폰트 네트워크 요청 이미지 추가 예정"))
-      .not.toBeInTheDocument();
-    expect(screen.getByLabelText("GA4 사용자 흐름 이미지 추가 예정"))
-      .toBeInTheDocument();
+    expect(
+      screen.queryByLabelText("GA4 사용자 흐름 이미지 추가 예정"),
+    ).not.toBeInTheDocument();
   });
 });

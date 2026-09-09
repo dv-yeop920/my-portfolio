@@ -43,28 +43,17 @@ describe("portfolio project content", () => {
       ]),
     );
     expect(mixti?.architecture?.alt).toBe("MIXTI 서비스 아키텍처");
-    expect(mixti?.architectureStory?.implementation).toContain("OpenAI Responses API");
+    expect(mixti?.architectureStory?.implementation).toContain("OpenAI 분석");
+    expect(mixti?.architectureStory?.result).toContain("같은 화면");
     expect(mixti?.structure?.title).toBe("FSD 기반 폴더 구조");
-    expect(mixti?.structureStory?.result).toContain("변경할 수");
+    expect(mixti?.structureStory?.result).toContain("수정할 수");
     expect(mixti?.purpose).not.toContain("GA4");
     expect(mixti?.highlights.some((highlight) => highlight.title.includes("GA4")))
       .toBe(true);
     expect(mixti?.highlights.every((highlight) => highlight.implementation)).toBe(true);
     expect(mixti?.highlights.flatMap((highlight) => highlight.evidence ?? []))
-      .toHaveLength(1);
-    expect(
-      mixti?.highlights.flatMap((highlight) =>
-        (highlight.evidence ?? []).map((item) => item.title),
-      ),
-    ).toEqual(["GA4 사용자 흐름"]);
-    expect(mixti?.highlights.find((highlight) => highlight.title.includes("웹폰트"))?.beforeAfter)
-      .toEqual(
-        expect.objectContaining({
-          before: expect.objectContaining({ title: "Before" }),
-          after: expect.objectContaining({ title: "After" }),
-        }),
-      );
-    expect(mixti?.highlights.find((highlight) => highlight.title.includes("INP"))?.beforeAfter)
+      .toHaveLength(0);
+    expect(mixti?.highlights.find((highlight) => highlight.title.includes("초기 화면"))?.beforeAfter)
       .toEqual(
         expect.objectContaining({
           before: expect.objectContaining({ title: "Before" }),

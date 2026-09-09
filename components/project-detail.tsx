@@ -369,11 +369,11 @@ function MixtiCaseStudy({ project }: { project: Project }) {
   const prompt = project.highlights.find(highlight =>
     highlight.title.includes("Prompt"),
   );
-  const font = project.highlights.find(highlight =>
-    highlight.title.includes("웹폰트"),
+  const initialRender = project.highlights.find(highlight =>
+    highlight.title.includes("초기 화면"),
   );
-  const inp = project.highlights.find(highlight =>
-    highlight.title.includes("INP"),
+  const navigation = project.highlights.find(highlight =>
+    highlight.title.includes("페이지 전환"),
   );
   const monitoring = project.highlights.find(highlight =>
     highlight.title.includes("GA4"),
@@ -384,8 +384,8 @@ function MixtiCaseStudy({ project }: { project: Project }) {
     !structure ||
     !analysis ||
     !prompt ||
-    !font ||
-    !inp ||
+    !initialRender ||
+    !navigation ||
     !monitoring
   ) {
     return null;
@@ -475,11 +475,17 @@ function MixtiCaseStudy({ project }: { project: Project }) {
       </CaseChapter>
 
       <CaseChapter
-        title="05. Performance Optimization"
+        title="05. 성능 최적화"
       >
         <div className="case-subchapter-grid">
-          <HighlightChapter highlight={font} label="LCP / Font Loading" />
-          <HighlightChapter highlight={inp} label="INP / Interaction Cost" />
+          <HighlightChapter
+            highlight={initialRender}
+            label="초기 화면 렌더링 / FCP · LCP"
+          />
+          <HighlightChapter
+            highlight={navigation}
+            label="페이지 전환 / Server Data Fetching"
+          />
         </div>
       </CaseChapter>
 
